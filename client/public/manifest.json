@@ -1,0 +1,100 @@
+{
+    "name": "Fableep AI Story Generator",
+    "short_name": "Fableep",
+    "icons": [
+         {
+            "src": "pwa_icon_android/icon_72x72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_96x96.png",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_144x144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_256x256.png",
+            "type": "image/png",
+            "sizes": "256x256",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_384x384.png",
+            "type": "image/png",
+            "sizes": "384x384",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa_icon_android/icon_512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+         {
+            "src": "pwa_icon_android/icon_72x72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_96x96.png",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_144x144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_256x256.png",
+            "type": "image/png",
+            "sizes": "256x256",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_384x384.png",
+            "type": "image/png",
+            "sizes": "384x384",
+            "purpose": "maskable"
+        },
+        {
+            "src": "pwa_icon_android/icon_512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#fff",
+    "theme_color": "#D18255",
+    "description": "This is a simple app to share recipes with the community.",
+    "dir": "ltr",
+    "splash_pages": null,
+    "lang": "en-US"
+}
