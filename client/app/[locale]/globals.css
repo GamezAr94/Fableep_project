@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'mainFont';
+    src: url('../../assets/fonts/Potta_One/PottaOne-Regular.ttf');
+}
+@font-face {
+    font-family: 'pFont';
+    src: url('../../assets/fonts/port-lligat-slab/PortLligatSlab-Regular.ttf');
+}
+@font-face {
+    font-family: 'SecondaryFont';
+    src: url('../../assets/fonts/rammetto-one/RammettoOne-Regular.ttf');
+}
+
+html {
+    /* setting the font settings */
+    font-size: 62.5%;
+
+    /* setting the colors */
+    --light-font-color: #AFC4DC;
+    --mild-font-color: #7C7C7C;
+    --darker-font-color: #515253;
+    --subtle-dividers-details: #DCDCDC;
+    --section-background-color: #F8F8F8;
+    --primary-color: #D18255;
+    --light-primary-color: #E8C1AA;
+}
+
+html,
+body {
+    /* general styles */
+    margin: 0px;
+    padding: 0px;
+}

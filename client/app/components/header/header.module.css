@@ -1,0 +1,32 @@
+
+/* Header styles */
+.header {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    border-bottom: 1px solid var(--subtle-dividers-details);
+}
+.header > div {
+    display: flex;
+    width: 93%;
+    justify-content: space-between;
+}
+.header > div > div {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.logo_section img {
+    width: 47px;
+    height: 47px;
+}
+.logo_section p {
+    font-family: 'mainFont';
+    color: var(--primary-color);
+    font-size: 1.7rem;
+
+}

@@ -87,14 +87,14 @@
             "purpose": "maskable"
         }
     ],
-    "start_url": "/",
-    "scope": "/",
+    "start_url": "/app/[locale]/",
+    "scope": "/app/[locale]/",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#fff",
     "theme_color": "#D18255",
-    "description": "This is a simple app to share recipes with the community.",
+    "description": "This is an app that will generate incredible bedtime stories for kids using AI",
     "dir": "ltr",
     "splash_pages": null,
-    "lang": "en-US"
+    "lang": "en, es, fr"
 }

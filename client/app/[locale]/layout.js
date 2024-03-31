@@ -1,3 +1,6 @@
+import "./globals.css";
+import Header from '../components/header/header';
+
 export const metadata = {
     title: "Fableep",
     description: "AI Bedtime Story Generator",
@@ -11,7 +14,10 @@ export const viewport = {
 export default function RootLayout({ params, children }) {
     return (
         <html lang={params.locale}>
-            <body>{children}</body>
+            <body>
+                <Header />
+                {children}
+            </body>
         </html>
     );
 }
