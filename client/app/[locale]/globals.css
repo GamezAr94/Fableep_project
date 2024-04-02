@@ -21,8 +21,18 @@ html {
     --darker-font-color: #515253;
     --subtle-dividers-details: #DCDCDC;
     --section-background-color: #F8F8F8;
-    --primary-color: #D18255;
+    --main-background-color: #fff;
+    --primary-color: #d98f64;
+    --primary-color-hover: #bf6d3e;
     --light-primary-color: #E8C1AA;
+    --backdrop-color: rgba(52, 52, 55, 0.5);
+    --backdrop-blur: blur(4px);
+    --transition-duration: .3s;
+    --transition-timing: ease-in-out;
+
+    max-width: 100wv;
+    overflow-x: hidden;
+    /* TEMP ART TODO */
 }
 
 html,
@@ -30,4 +40,12 @@ body {
     /* general styles */
     margin: 0px;
     padding: 0px;
+    font-family: 'pFont';
+}
+a {
+    text-decoration: none;
+    color: var(--darker-font-color);
+}
+body main {
+    height: 3000px;
 }

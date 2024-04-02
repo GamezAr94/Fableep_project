@@ -1,0 +1,27 @@
+.loginBtn,
+.signupBtn {
+    align-content: center;
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    font-family: 'mainFont';
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 3px 4px 3px 1px var(--subtle-dividers-details);
+    border: 1px solid var(--subtle-dividers-details);
+    transition: var(--transition-duration);
+}
+.loginBtn {
+    background-color: var(--main-background-color);
+}
+.loginBtn:hover {
+    background-color: var(--section-background-color);
+    transition: var(--transition-duration);
+}
+.signupBtn {
+    background-color: var(--primary-color);
+    color: var(--main-background-color);
+}
+.signupBtn:hover {
+    background-color: var(--primary-color-hover);
+    transition: var(--transition-duration);
+}

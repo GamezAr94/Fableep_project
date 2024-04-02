@@ -1,0 +1,153 @@
+.menuHamburger {
+    width: 30px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.menuIcon,
+.menuIcon::after,
+.menuIcon::before {
+    content: '';
+    width: 100%;;
+    height: 5px;
+    background-color: var(--darker-font-color);
+    border-radius: 10px;
+    transition: var(--transition-duration);
+    transition-timing-function: var(--transition-timing);
+}
+.menuIcon::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.menuIcon::after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.menuIcon.closeIcon ,
+.menuIcon.closeIcon::after,
+.menuIcon.closeIcon::before {
+    transition: var(--transition-duration);
+    transition-timing-function: var(--transition-timing);
+}
+.menuIcon.closeIcon {
+    background-color: transparent;
+}
+.menuIcon.closeIcon::after,
+.menuIcon.closeIcon::before {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform-origin: center;
+    transition: var(--transition-duration);
+    transition-timing-function: var(--transition-timing);
+}
+.menuIcon.closeIcon::after {
+    rotate: 45deg;
+}
+.menuIcon.closeIcon::before {
+    rotate: -45deg;
+}
+
+/* Menu Open Container */
+.menuContainer {
+    right: 0;
+    position: relative;
+    width: 100vw;
+    max-height: 80dvh;
+    display: flex;
+    border-top: 1px solid var(--subtle-dividers-details);
+    z-index: 100;
+    transition: var(--transition-duration);
+    transition-property: max-height;
+    transition-timing-function: var(--transition-timing);
+    overflow: unset;
+}
+.menuContainer.collapsed {
+    max-height: 0dvh;
+    transition-property: max-height;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+.menuContainer.collapsed .backdrop {
+    opacity: 0;
+    transition: opacity calc(.1s + var(--transition-duration)) var(--transition-timing);
+}
+.backdrop {
+    top: 0;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--backdrop-color);
+    backdrop-filter: var(--backdrop-blur);
+    z-index: 1;
+    transition: opacity calc(.1s + var(--transition-duration)) var(--transition-timing);
+    transition-delay: .1s;
+}
+.menuOptions {
+    width: 100vw;
+    background-color: var(--main-background-color);
+    padding: 30px 0px;
+    overflow: hidden;
+    z-index: 2;
+    transition: padding var(--transition-duration);
+}
+.collapsed .menuOptions {
+    padding: 0px 0px;
+    transition: padding .1s;
+}
+.menuOptions > div {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 0px;
+    width: 85%;
+}
+.menuOptions > div > a {
+    font-size: clamp(1.8rem, 6vw, 2.1rem);
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: .3s;
+}
+.menuOptions > div > a:hover {
+    background-color: var(--section-background-color);
+    transition: .3s;
+}
+.signBtns {
+    padding-top: 15px;
+    margin-top: 5px;
+    width: 100%;
+    border-top: 1px solid var( --subtle-dividers-details);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center; 
+    gap: 15px 20px;
+}
+.signBtns a {
+    width: 100%;
+    padding: 10px 0px;
+}
+@media (min-width: 400px) {
+    .signBtns {
+        flex-direction: row;
+        gap: 0px 20px;
+    }
+    .signBtns a {
+        padding: 10px 20px;
+    }
+}
+@media (min-width: 700px) {
+    .header > div {
+        gap: 0 60vw;
+    }
+}

@@ -1,32 +1,45 @@
-
 /* Header styles */
 .header {
+    top: 0px;
+    position: sticky;
+    background-color: var(--main-background-color);
     display: flex;
     width: 100vw;
     justify-content: center;
     align-items: center;
     min-height: 60px;
-    border-bottom: 1px solid var(--subtle-dividers-details);
 }
 .header > div {
+    width: 99%;
     display: flex;
-    width: 93%;
-    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 20vw;
+    align-items: center;
 }
-.header > div > div {
+/* Logo section - left side of the header */
+.logo_section {
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
+    font-family: 'mainFont';
+    color: var(--primary-color);
+    font-size: clamp(1.9rem, 6vw, 2.7rem);
 }
 .logo_section img {
     width: 47px;
     height: 47px;
 }
-.logo_section p {
-    font-family: 'mainFont';
-    color: var(--primary-color);
-    font-size: 1.7rem;
-
+@media (min-width: 400px) {
+    .header > div {
+        gap: 0 50vw;
+    }
+}
+@media (min-width: 700px) {
+    .header > div {
+        gap: 0 60vw;
+    }
 }
