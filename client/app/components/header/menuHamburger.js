@@ -3,13 +3,16 @@ import Link from "next/link";
 import styles from "./menuHamburger.module.css";
 import { useState } from "react";
 import LoginButton from "../loginButton/loginButton";
+import { useTranslation } from "react-i18next";
 
 export default function MenuHamburger() {
+    const { t } = useTranslation();
     const [isClosed, setIsClosed] = useState(true);
 
     function toggleMenu() {
         setIsClosed(!isClosed);
     }
+
     return (
         <>
             <div className={styles.menuHamburger} onClick={toggleMenu}>
@@ -25,16 +28,16 @@ export default function MenuHamburger() {
                 <div className={styles.backdrop} onClick={toggleMenu}></div>
                 <div className={styles.menuOptions}>
                     <div>
-                        <Link href="/">Home</Link>
-                        <Link href="/">Pricing</Link>
-                        <Link href="/">Resources</Link>
-                        <Link href="/">Language</Link>
+                        <Link href="/">{t("publicMenu:home")}</Link>
+                        <Link href="/">{t("publicMenu:pricing")}</Link>
+                        <Link href="/">{t("publicMenu:resources")}</Link>
+                        <Link href="/">{t("publicMenu:language")}</Link>
                         <div className={styles.signBtns}>
                             <LoginButton href="/" isLogin="true">
-                                Login
+                                {t("publicMenu:login")}
                             </LoginButton>
                             <LoginButton href="/" type="false">
-                                Start For Free
+                                {t("publicMenu:start_for_free")}
                             </LoginButton>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 import "./globals.css";
-import Header from '../components/header/header';
+import Header from "../components/header/header";
+import initTranslations from "../i18n";
+import TranslationsProvider from "../components/translationsProvider";
 
 export const metadata = {
     title: "Fableep",
@@ -11,11 +13,21 @@ export const viewport = {
     themeColor: "#D18255",
 };
 
-export default function RootLayout({ params, children }) {
+const i18nNamespaces = ["publicMenu"];
+export default async function RootLayout({ params, children }) {
+    const { resources } = await initTranslations(
+        params.locale,
+        i18nNamespaces
+    );
     return (
         <html lang={params.locale}>
             <body>
-                <Header />
+                <TranslationsProvider
+                    resources={resources}
+                    locale={params.locale}
+                    namespaces={i18nNamespaces}>
+                    <Header />
+                </TranslationsProvider>
                 {children}
             </body>
         </html>
