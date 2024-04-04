@@ -1,12 +1,13 @@
 const User = require("../models/User");
 
 // Controller to create new users
-exports.postAddNewUser = (req, res) => {
+exports.postSignup = (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
+
     if (!username || !password) {
         return res.status(400).send("Username and password are required");
     }
+
     const user = new User(req.body.username, req.body.password);
 
     const saveResult = user.save();
@@ -21,5 +22,6 @@ exports.postAddNewUser = (req, res) => {
 // Controller to fetch all the users
 exports.getUsers = (req, res) => {
     const users = User.fetchAll();
+    console.log(users);
     return res.status(201).json(users);
 };

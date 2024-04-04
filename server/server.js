@@ -1,20 +1,19 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const cors = require("cors");
 
+const config = require("./config/config");
 const app = express();
-const PORT = 8080;
 
 // setting Routes
-const authRoutes = require("./routes/authentication");
+const authRoutes = require("./routes/authRoutes");
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-const api_version = "/api/v1";
+app.use(config.api_version, authRoutes);
 
-app.use(api_version, authRoutes);
-
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.listen(config.port, () => {
+    console.log(`Server started on port ${config.port}`);
 });
