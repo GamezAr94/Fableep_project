@@ -33,10 +33,16 @@ export default function MenuHamburger() {
                         <Link href="/">{t("publicMenu:resources")}</Link>
                         <Link href="/">{t("publicMenu:language")}</Link>
                         <div className={styles.signBtns}>
-                            <LoginButton href="/" isLogin="true">
+                            <LoginButton
+                                onClick={toggleMenu}
+                                href="/dashboard/login"
+                                isLogin="true">
                                 {t("publicMenu:login")}
                             </LoginButton>
-                            <LoginButton href="/" type="false">
+                            <LoginButton
+                                href="/dashboard/signup"
+                                onClick={toggleMenu}
+                                isLogin="false">
                                 {t("publicMenu:start_for_free")}
                             </LoginButton>
                         </div>

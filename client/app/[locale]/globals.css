@@ -1,14 +1,20 @@
 @font-face {
     font-family: 'mainFont';
-    src: url('../../assets/fonts/Potta_One/PottaOne-Regular.ttf');
+    src: url('../../public/fonts/Potta_One/PottaOne-Regular.woff2') format('woff2'),
+         url('../../public/fonts/Potta_One/PottaOne-Regular.woff') format('woff');
+    font-display: swap;
 }
 @font-face {
     font-family: 'pFont';
-    src: url('../../assets/fonts/port-lligat-slab/PortLligatSlab-Regular.ttf');
+    src: url('../../public/fonts/port-lligat-slab/PortLligatSlab-Regular.woff2') format('woff2'),
+         url('../../public/fonts/port-lligat-slab/PortLligatSlab-Regular.woff') format('woff');
+    font-display: swap;
 }
 @font-face {
     font-family: 'SecondaryFont';
-    src: url('../../assets/fonts/rammetto-one/RammettoOne-Regular.ttf');
+    src: url('../../public/fonts/rammetto-one/RammettoOne-Regular.woff2') format('woff2'),
+         url('../../public/fonts/rammetto-one/RammettoOne-Regular.woff') format('woff');
+    font-display: swap;
 }
 
 html {
@@ -22,8 +28,8 @@ html {
     --subtle-dividers-details: #DCDCDC;
     --section-background-color: #F8F8F8;
     --main-background-color: #fff;
-    --primary-color: #d98f64;
-    --primary-color-hover: #bf6d3e;
+    --primary-color: #cb7645;
+    --primary-color-hover: #b66333;
     --light-primary-color: #E8C1AA;
     --backdrop-color: rgba(52, 52, 55, 0.5);
     --backdrop-blur: blur(4px);

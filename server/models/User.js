@@ -21,6 +21,19 @@ class User {
     static fetchAll() {
         return users;
     }
+
+    login() {
+        if (
+            users.some((user) => user.username === this.username) &&
+            users.some((user) => user.password === this.password)
+        ) {
+            return { success: true, message: "User loged in successfully" };
+        }
+        return {
+            success: false,
+            message: "username or password doesn't match",
+        };
+    }
 }
 
 module.exports = User;
