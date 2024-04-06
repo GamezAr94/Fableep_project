@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MenuHamburger from "./menuHamburger";
 
-import logoImg from "@/public/fableep_logo.png";
+import logoImg from "@/public/fableep_logo_compress.png";
 
 import styles from "./header.module.css";
 import Link from "next/link";

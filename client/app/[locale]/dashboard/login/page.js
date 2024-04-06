@@ -28,7 +28,7 @@ export default function SignupPage() {
                 <p>forgot your password</p>
                 <p>terms of service</p>
             </form>
-            <p>don't have an account? sign up</p>
+            <p>dont have an account? sign up</p>
         </div>
     );
 }
