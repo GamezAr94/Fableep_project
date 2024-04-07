@@ -49,3 +49,8 @@ export async function login(formData) {
         redirect("/dashboard");
     }
 }
+
+// function that will perform the login process
+export async function forgot_password(formData) {
+    console.log("forgot password");
+}

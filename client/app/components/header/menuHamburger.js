@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "./menuHamburger.module.css";
 import { useState } from "react";
-import LoginButton from "../loginButton/loginButton";
+import LoginButton from "../inputs/loginButton";
 import { useTranslation } from "react-i18next";
 
 export default function MenuHamburger() {
@@ -28,10 +28,10 @@ export default function MenuHamburger() {
                 <div className={styles.backdrop} onClick={toggleMenu}></div>
                 <div className={styles.menuOptions}>
                     <div>
-                        <Link href="/">{t("publicMenu:home")}</Link>
-                        <Link href="/">{t("publicMenu:pricing")}</Link>
-                        <Link href="/">{t("publicMenu:resources")}</Link>
-                        <Link href="/">{t("publicMenu:language")}</Link>
+                        <Link onClick={toggleMenu} href="/">{t("publicMenu:home")}</Link>
+                        <Link onClick={toggleMenu} href="/">{t("publicMenu:pricing")}</Link>
+                        <Link onClick={toggleMenu} href="/">{t("publicMenu:resources")}</Link>
+                        <Link onClick={toggleMenu} href="/">{t("publicMenu:language")}</Link>
                         <div className={styles.signBtns}>
                             <LoginButton
                                 onClick={toggleMenu}

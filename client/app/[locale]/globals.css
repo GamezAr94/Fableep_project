@@ -2,20 +2,42 @@
     font-family: 'mainFont';
     src: url('../../public/fonts/Potta_One/PottaOne-Regular.woff2') format('woff2'),
          url('../../public/fonts/Potta_One/PottaOne-Regular.woff') format('woff');
-    font-display: swap;
+    font-display: block;
 }
+@font-face {
+    font-family: 'readXLightFont';
+    src: url('../../public/fonts/poppins/Poppins-ExtraLight.woff2') format('woff2'),
+         url('../../public/fonts/poppins/Poppins-ExtraLight.woff') format('woff');
+    font-display: block;
+}
+@font-face {
+    font-family: 'readLightFont';
+    src: url('../../public/fonts/poppins/Poppins-Light.woff2') format('woff2'),
+         url('../../public/fonts/poppins/Poppins-Light.woff') format('woff');
+    font-display: block;
+}
+@font-face {
+    font-family: 'readRegularFont';
+    src: url('../../public/fonts/poppins/Poppins-Regular.woff2') format('woff2'),
+         url('../../public/fonts/poppins/Poppins-Regular.woff') format('woff');
+    font-display: block;
+}
+/* TODO Do not use this font I want to delet it */
+/* START FROM HERE */
 @font-face {
     font-family: 'pFont';
     src: url('../../public/fonts/port-lligat-slab/PortLligatSlab-Regular.woff2') format('woff2'),
          url('../../public/fonts/port-lligat-slab/PortLligatSlab-Regular.woff') format('woff');
-    font-display: swap;
+    font-display: auto;
 }
 @font-face {
     font-family: 'SecondaryFont';
     src: url('../../public/fonts/rammetto-one/RammettoOne-Regular.woff2') format('woff2'),
          url('../../public/fonts/rammetto-one/RammettoOne-Regular.woff') format('woff');
-    font-display: swap;
+    font-display: auto;
 }
+/* ENDS HERE */
+
 
 html {
     /* setting the font settings */
@@ -25,10 +47,11 @@ html {
     --light-font-color: #AFC4DC;
     --mild-font-color: #7C7C7C;
     --darker-font-color: #515253;
-    --subtle-dividers-details: #DCDCDC;
+    --subtle-dividers-details: #f2f2f293;
+    --subtle-dividers-details: 220, 220, 220;
     --section-background-color: #F8F8F8;
     --main-background-color: #fff;
-    --primary-color: #cb7645;
+    --primary-color: #ca6f39;
     --primary-color-hover: #b66333;
     --light-primary-color: #E8C1AA;
     --backdrop-color: rgba(52, 52, 55, 0.5);
@@ -38,7 +61,6 @@ html {
 
     max-width: 100wv;
     overflow-x: hidden;
-    /* TEMP ART TODO */
 }
 
 html,
@@ -46,11 +68,16 @@ body {
     /* general styles */
     margin: 0px;
     padding: 0px;
-    font-family: 'pFont';
+    font-family: 'readLightFont';
 }
 a {
     text-decoration: none;
     color: var(--darker-font-color);
+}
+p {
+    font-size: 1.3rem;
+    margin: 0px;
+    padding: 0px;
 }
 body main {
     height: 3000px;

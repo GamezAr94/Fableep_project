@@ -6,8 +6,8 @@
     font-family: 'mainFont';
     max-width: 600px;
     border-radius: 20px;
-    box-shadow: 3px 4px 3px 1px var(--subtle-dividers-details);
-    border: 1px solid var(--subtle-dividers-details);
+    box-shadow: 3px 4px 3px 1px rgba(var(--subtle-dividers-details), 0.7);
+    border: 1px solid rgba(var(--subtle-dividers-details), 0.5);
     transition: var(--transition-duration);
 }
 .loginBtn {

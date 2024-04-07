@@ -87,8 +87,8 @@
             "purpose": "maskable"
         }
     ],
-    "start_url": "/app/[locale]/",
-    "scope": "/app/[locale]/",
+    "start_url": "/dashboard",
+    "scope": "/dashboard",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#fff",
