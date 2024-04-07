@@ -4,13 +4,18 @@ import styles from "./menuHamburger.module.css";
 import { useState } from "react";
 import LoginButton from "../inputs/loginButton";
 import { useTranslation } from "react-i18next";
+import LanguageSelector from "./languageSelector";
 
 export default function MenuHamburger() {
     const { t } = useTranslation();
     const [isClosed, setIsClosed] = useState(true);
+    const [isSubMenuLangClosed, setSubMenuLangClosed] = useState(true);
 
     function toggleMenu() {
         setIsClosed(!isClosed);
+    }
+    function showSubMenu() {
+        setSubMenuLangClosed(!isSubMenuLangClosed);
     }
 
     return (
@@ -43,11 +48,34 @@ export default function MenuHamburger() {
                                 {t("publicMenu:resources")}
                             </Link>
                         </li>
-                        <li>
-                            <Link onClick={toggleMenu} href="/">
-                                {t("publicMenu:language")}
-                            </Link>
+                        <li
+                            className={`${styles.languages} ${
+                                isSubMenuLangClosed ? "" : styles.active
+                            }`}
+                            onClick={showSubMenu}>
+                            {t("publicMenu:language")}
+                            <span>\/</span>
                         </li>
+                        <ul
+                            className={`${styles.submenu} ${
+                                isSubMenuLangClosed ? styles.closed : ""
+                            }`}>
+                            <LanguageSelector language="es">
+                                Español
+                            </LanguageSelector>
+                            <LanguageSelector language="it">
+                                Italiano
+                            </LanguageSelector>
+                            <LanguageSelector language="fr">
+                                Frances
+                            </LanguageSelector>
+                            <LanguageSelector language="ko">
+                                Coreano
+                            </LanguageSelector>
+                            <LanguageSelector language="en">
+                                Ingles
+                            </LanguageSelector>
+                        </ul>
                         <hr></hr>
                         <ul className={styles.signBtns}>
                             <li>
