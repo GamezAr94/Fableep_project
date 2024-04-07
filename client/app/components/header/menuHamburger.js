@@ -17,8 +17,8 @@ export default function MenuHamburger() {
         <>
             <div className={styles.menuHamburger} onClick={toggleMenu}>
                 <div
-                    className={`${styles.menuIcon} ${
-                        isClosed ? "" : styles.closeIcon
+                    className={`${styles.menuIcon} 
+                        isClose ? "" : styles.closeIcon
                     }`}></div>
             </div>
             <div
@@ -26,28 +26,49 @@ export default function MenuHamburger() {
                     isClosed ? styles.collapsed : ""
                 }`}>
                 <div className={styles.backdrop} onClick={toggleMenu}></div>
-                <div className={styles.menuOptions}>
-                    <div>
-                        <Link onClick={toggleMenu} href="/">{t("publicMenu:home")}</Link>
-                        <Link onClick={toggleMenu} href="/">{t("publicMenu:pricing")}</Link>
-                        <Link onClick={toggleMenu} href="/">{t("publicMenu:resources")}</Link>
-                        <Link onClick={toggleMenu} href="/">{t("publicMenu:language")}</Link>
-                        <div className={styles.signBtns}>
-                            <LoginButton
-                                onClick={toggleMenu}
-                                href="/dashboard/login"
-                                isLogin="true">
-                                {t("publicMenu:login")}
-                            </LoginButton>
-                            <LoginButton
-                                href="/dashboard/signup"
-                                onClick={toggleMenu}
-                                isLogin="false">
-                                {t("publicMenu:start_for_free")}
-                            </LoginButton>
-                        </div>
-                    </div>
-                </div>
+                <nav className={styles.menuOptions}>
+                    <ul className={styles.first_level_list}>
+                        <li>
+                            <Link onClick={toggleMenu} href="/">
+                                {t("publicMenu:home")}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link onClick={toggleMenu} href="/">
+                                {t("publicMenu:pricing")}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link onClick={toggleMenu} href="/">
+                                {t("publicMenu:resources")}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link onClick={toggleMenu} href="/">
+                                {t("publicMenu:language")}
+                            </Link>
+                        </li>
+                        <hr></hr>
+                        <ul className={styles.signBtns}>
+                            <li>
+                                <LoginButton
+                                    onClick={toggleMenu}
+                                    href="/dashboard/login"
+                                    isLogin="true">
+                                    {t("publicMenu:login")}
+                                </LoginButton>
+                            </li>
+                            <li>
+                                <LoginButton
+                                    href="/dashboard/signup"
+                                    onClick={toggleMenu}
+                                    isLogin="false">
+                                    {t("publicMenu:start_for_free")}
+                                </LoginButton>
+                            </li>
+                        </ul>
+                    </ul>
+                </nav>
             </div>
         </>
     );

@@ -90,7 +90,7 @@
 .menuOptions {
     width: 100vw;
     background-color: var(--main-background-color);
-    padding: 30px 0px;
+    padding: 20px 0px;
     overflow: hidden;
     z-index: 2;
     transition: padding var(--transition-duration);
@@ -99,7 +99,14 @@
     padding: 0px 0px;
     transition: padding .1s;
 }
-.menuOptions > div {
+.menuOptions > ul {
+    display: flex;
+    gap: 5px;
+    margin: 0px;
+    flex-direction: column;
+    padding: 0px;
+}
+.menuOptions ul > li {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -108,7 +115,7 @@
     gap: 10px 0px;
     width: 85%;
 }
-.menuOptions > div > a {
+.menuOptions > ul li > a {
     font-size: clamp(1.8rem, 6vw, 2.1rem);
     height: 45px;
     width: 100%;
@@ -118,36 +125,42 @@
     border-radius: 15px;
     transition: var(--transition-duration);
 }
-.menuOptions > div > a:hover {
+.menuOptions > ul > li > a:hover {
     background-color: var(--section-background-color);
     transition: var(--transition-duration);
 }
+.menuOptions hr {
+    width: 85%;
+    opacity: .2;
+    border: 1px solid rgba(var(--subtle-dividers-details), 1);
+}
 .signBtns {
+    padding: 0px;
     padding-top: 15px;
     margin-top: 5px;
     width: 100%;
-    border-top: 1px solid rgba(var(--subtle-dividers-details), 0.7);
     display: flex;
     align-items: stretch;
     flex-direction: column;
     justify-content: center; 
     gap: 15px 20px;
 }
-.signBtns a {
+.signBtns li {
     width: 100%;
+    padding: 0px;
+}
+.signBtns li a {
     padding: 10px 0px;
 }
-@media (min-width: 400px) {
+
+@media (min-width: 450px) {
     .signBtns {
         flex-direction: row;
-        gap: 0px 20px;
+        gap: 0px 60px;
+        margin: 0 auto;
+        width: 85%;
     }
-    .signBtns a {
-        padding: 10px 20px;
-    }
-}
-@media (min-width: 700px) {
-    .header > div {
-        gap: 0 60vw;
+    .signBtns li a {
+        padding: 8px 15px;
     }
 }
