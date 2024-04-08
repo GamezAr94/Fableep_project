@@ -4,5 +4,11 @@
     "resources": "Risorse",
     "language": "Lingua",
     "login": "Accedi",
-    "start_for_free": "Inizia Gratis"
+    "start_for_free": "Inizia Gratis",
+
+    "es": "Spagnolo",
+    "it": "Italiano",
+    "fr": "Francese",
+    "ko": "Coreano",
+    "en": "Inglese"
 }

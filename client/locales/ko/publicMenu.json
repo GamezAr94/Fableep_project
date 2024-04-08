@@ -4,5 +4,11 @@
     "resources": "자료",
     "language": "언어",
     "login": "로그인",
-    "start_for_free": "무료로 시작하기"
+    "start_for_free": "무료로 시작하기",
+
+    "es": "스페인어",
+    "it": "이탈리아어",
+    "fr": "프랑스어",
+    "ko": "한국어",
+    "en": "영어"
 }

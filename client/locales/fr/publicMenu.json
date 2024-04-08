@@ -4,5 +4,11 @@
     "resources": "Ressources",
     "language": "Langue",
     "login": "Connexion",
-    "start_for_free": "Commencer Gratuitement"
+    "start_for_free": "Commencer Gratuitement",
+
+    "es": "Espagnol",
+    "it": "Italien",
+    "fr": "Français",
+    "ko": "Coréen",
+    "en": "Anglais"
 }

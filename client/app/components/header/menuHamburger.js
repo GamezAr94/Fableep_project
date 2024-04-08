@@ -60,20 +60,20 @@ export default function MenuHamburger() {
                             className={`${styles.submenu} ${
                                 isSubMenuLangClosed ? styles.closed : ""
                             }`}>
+                            <LanguageSelector language="en">
+                                {t("publicMenu:en")}
+                            </LanguageSelector>
                             <LanguageSelector language="es">
-                                Español
+                                {t("publicMenu:es")}
                             </LanguageSelector>
                             <LanguageSelector language="it">
-                                Italiano
+                                {t("publicMenu:it")}
                             </LanguageSelector>
                             <LanguageSelector language="fr">
-                                Frances
+                                {t("publicMenu:fr")}
                             </LanguageSelector>
                             <LanguageSelector language="ko">
-                                Coreano
-                            </LanguageSelector>
-                            <LanguageSelector language="en">
-                                Ingles
+                                {t("publicMenu:ko")}
                             </LanguageSelector>
                         </ul>
                         <hr></hr>
