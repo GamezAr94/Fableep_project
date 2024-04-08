@@ -89,7 +89,7 @@
     ],
     "start_url": "/dashboard",
     "scope": "/dashboard",
-    "display": "standalone",
+    "display": "fullscreen",
     "orientation": "portrait-primary",
     "background_color": "#fff",
     "theme_color": "#D18255",
