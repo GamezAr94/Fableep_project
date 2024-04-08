@@ -15,7 +15,7 @@
 .formContainer hr {
     width: 100%;
     opacity: .2;
-    border: 1px solid rgba(var(--subtle-dividers-details), 0.5);
+    border: 1px solid rgba(var(--subtle-dividers-details), 1);
 }
 .title {
     margin-bottom: clamp(10px, 3vw, 25px);

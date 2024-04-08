@@ -5,6 +5,7 @@
     align-items: center;
     position: relative;
     cursor: pointer;
+    margin-right: 20px;
 }
 .menuIcon,
 .menuIcon::after,
@@ -60,7 +61,7 @@
     max-height: 95vh;
     max-height: 95dvh;
     display: flex;
-    border: 1px solid rgba(var(--subtle-dividers-details), 0.2);
+    border-top: 1px solid rgba(var(--subtle-dividers-details), 0.4);
     z-index: 100;
     transition: var(--transition-duration);
     transition-property: max-height;
