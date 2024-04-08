@@ -1,0 +1,27 @@
+{
+    "login_title": "Iniciar sesión",
+    "continue_with": "Continuar con {{ appname }}",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    
+    "login": "Iniciar sesión",
+    "enter_email": "Ingrese su correo electrónico...",
+    "enter_pass": "Ingrese su contraseña...",
+    "forgot_pass": "¿Olvidaste tu contraseña?",
+    "no_account": "¿No tienes una cuenta?",
+    "go_signup": "Ir al registro",
+    
+    "terms_p": "Al continuar con Google, Facebook, Apple o Correo electrónico, aceptas los",
+    "terms": "Términos de Servicio",
+    "and": "y",
+    "privacy": "Política de Privacidad",
+    
+    "signup_title": "Registrarse",
+    "signup": "Registrarse",
+    "already_signup": "¿Ya estás registrado?",
+    "go_to_login": "Ir a iniciar sesión",
+    
+    "forgot_title": "¿Olvidaste tu contraseña?",
+    "forgot_button": "Restablecer mi contraseña",
+    "forgot_desc": "Para restablecer tu contraseña, por favor ingresa la dirección de correo electrónico de tu cuenta de Fableep."
+}

@@ -1,0 +1,27 @@
+{
+    "login_title": "Connexion",
+    "continue_with": "Continuer avec {{ appname }}",
+    "email": "E-mail",
+    "password": "Mot de passe",
+
+    "login": "Connexion",
+    "enter_email": "Entrez votre e-mail...",
+    "enter_pass": "Entrez votre mot de passe...",
+    "forgot_pass": "Mot de passe oublié?",
+    "no_account": "Vous n'avez pas de compte?",
+    "go_signup": "Aller à l'inscription",
+    
+    "terms_p": "En continuant avec Google, Facebook, Apple ou Email, vous acceptez les",
+    "terms": "Conditions d'utilisation",
+    "and": "et",
+    "privacy": "Politique de confidentialité",
+    
+    "signup_title": "S'inscrire",
+    "signup": "S'inscrire",
+    "already_signup": "Déjà inscrit?",
+    "go_to_login": "Aller à la connexion",
+    
+    "forgot_title": "Mot de passe oublié?",
+    "forgot_button": "Réinitialiser mon mot de passe",
+    "forgot_desc": "Pour réinitialiser votre mot de passe, veuillez entrer l'adresse e-mail de votre compte Fableep."    
+}

@@ -1,19 +1,34 @@
 import styles from "./authForm.module.css";
 import TextInput from "@/app/components/AuthForm/textInput";
+import initTranslations from "@/app/i18n";
 import Link from "next/link";
 
-export default function AuthForm({ action, type }) {
+export default async function AuthForm({ action, type, params, i18n }) {
+    const { t } = await initTranslations(params.locale, i18n);
+
     let button = "";
-    let title = "Incorrect type";
-    let redirect_link = "Incorrect types";
-    let terms_n_conditions = "";
+    let title = "";
+    let redirect_link = "";
+
+    let terms_n_conditions = (
+        <p className={styles.terms_n_conditions}>
+            {t("authenticate:terms_p")}{" "}
+            <Link href="#">{t("authenticate:terms")}</Link>{" "}
+            {t("authenticate:and")}{" "}
+            <Link href="#">{t("authenticate:privacy")}</Link>.
+        </p>
+    );
+
+    // set the content of the page depending on the type of page Login Signup and Forgot Pass
     if (type == "login") {
-        button = "Log in";
-        title = "Log in";
+        button = t("authenticate:login");
+        title = t("authenticate:login_title");
         redirect_link = (
             <p className={styles.redirect_link}>
-                Don&apos;t have an account?{" "}
-                <Link href="/dashboard/signup">Go to sign up</Link>
+                {t("authenticate:no_account")}{" "}
+                <Link href="/dashboard/signup">
+                    {t("authenticate:go_signup")}
+                </Link>
             </p>
         );
         terms_n_conditions = (
@@ -21,37 +36,31 @@ export default function AuthForm({ action, type }) {
                 <Link
                     className={styles.forgot_password}
                     href="/dashboard/password">
-                    Forgot your password?
+                    {t("authenticate:forgot_pass")}
                 </Link>
-                <p className={styles.terms_n_conditions}>
-                    By continuing with Google, Apple, or Email, you agree to
-                    Fableep’s <Link href="#">Terms of Service</Link> and{" "}
-                    <Link href="#">Privacy Policy</Link>.
-                </p>
+                {terms_n_conditions}
             </>
         );
     } else if (type == "signup") {
-        button = "Sign up";
-        title = "Sign up";
+        button = t("authenticate:signup");
+        title = t("authenticate:signup_title");
         redirect_link = (
             <p className={styles.redirect_link}>
-                Already signed up?{" "}
-                <Link href="/dashboard/login">Go to login</Link>
-            </p>
-        );
-        terms_n_conditions = (
-            <p className={styles.terms_n_conditions}>
-                By continuing with Google, Apple, or Email, you agree to
-                Fableep’s <Link href="#">Terms of Service</Link> and{" "}
-                <Link href="#">Privacy Policy</Link>.
+                {t("authenticate:already_signup")}{" "}
+                <Link href="/dashboard/login">
+                    {t("authenticate:go_to_login")}
+                </Link>
             </p>
         );
     } else if (type == "password") {
-        button = "Reset my password";
-        title = "Forgot your password?";
+        terms_n_conditions = "";
+        button = t("authenticate:forgot_button");
+        title = t("authenticate:forgot_title");
         redirect_link = (
             <p className={styles.redirect_link}>
-                <Link href="/dashboard/login">Go to login</Link>
+                <Link href="/dashboard/login">
+                    {t("authenticate:go_to_login")}
+                </Link>
             </p>
         );
     }
@@ -61,24 +70,27 @@ export default function AuthForm({ action, type }) {
                 <p>{title}</p>
             </div>
             {type == "password" ? (
-                <p>
-                    To reset your password, please enter the email address of
-                    your Fableep account.
-                </p>
+                <p>{t("authenticate:forgot_desc")}</p>
             ) : (
                 <>
                     <div className={styles.socialBtns}>
                         <button className={styles.button_generic}>
                             <span>G</span>
-                            Continue with Google
+                            {t("authenticate:continue_with", {
+                                appname: "Google",
+                            })}
                         </button>
                         <button className={styles.button_generic}>
                             <span>F</span>
-                            Continue with Facebook
+                            {t("authenticate:continue_with", {
+                                appname: "Facebook",
+                            })}
                         </button>
                         <button className={styles.button_generic}>
                             <span>A</span>
-                            Continue with Apple
+                            {t("authenticate:continue_with", {
+                                appname: "Apple",
+                            })}
                         </button>
                     </div>
                     <hr></hr>
@@ -87,8 +99,9 @@ export default function AuthForm({ action, type }) {
             <form action={action} className={styles.form}>
                 <TextInput
                     type="text"
+                    label={t("authenticate:email")}
                     name="username"
-                    placeholder="Enter your email..."
+                    placeholder={t("authenticate:enter_email")}
                 />
                 {type == "password" ? (
                     ""
@@ -96,7 +109,8 @@ export default function AuthForm({ action, type }) {
                     <TextInput
                         type="password"
                         name="password"
-                        placeholder="Enter your password..."
+                        label={t("authenticate:password")}
+                        placeholder={t("authenticate:enter_pass")}
                     />
                 )}
                 <div>

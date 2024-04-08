@@ -1,0 +1,27 @@
+{
+    "login_title": "Log in",
+    "continue_with": "Continue with {{ appname }}",
+    "email": "Email",
+    "password": "Password",
+
+    "login": "Login",
+    "enter_email": "Enter your email...",
+    "enter_pass": "Enter your password...",
+    "forgot_pass": "Forgot your password?",
+    "no_account": "Don't have an account?",
+    "go_signup": "Go to signup",
+
+    "terms_p": "By continuing with Google, Facebook, Apple, or Email, you agree to Fableep’s",
+    "terms": "Terms of Service",
+    "and": "and",
+    "privacy": "Privacy Policy",
+
+    "signup_title": "Sign Up",
+    "signup": "Signup",
+    "already_signup": "Already signed up?",
+    "go_to_login": "Go to login",
+
+    "forgot_title": "Forgot your password?",
+    "forgot_button": "Reset my password",
+    "forgot_desc": "To reset your password, please enter the email address of your Fableep account."
+}

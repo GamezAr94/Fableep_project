@@ -1,0 +1,27 @@
+{
+    "login_title": "로그인",
+    "continue_with": "{{ appname }} 으로 계속하기",
+    "email": "이메일",
+    "password": "비밀번호",
+
+    "login": "로그인",
+    "enter_email": "이메일을 입력하세요...",
+    "enter_pass": "비밀번호를 입력하세요...",
+    "forgot_pass": "비밀번호를 잊으셨나요?",
+    "no_account": "계정이 없으신가요?",
+    "go_signup": "가입하러 가기",
+    
+    "terms_p": "Google, Facebook, Apple 또는 이메일로 계속하면, 다음을 동의하는 것입니다",
+    "terms": "서비스 약관",
+    "and": "및",
+    "privacy": "개인정보 처리방침",
+    
+    "signup_title": "가입하기",
+    "signup": "가입하기",
+    "already_signup": "이미 가입하셨나요?",
+    "go_to_login": "로그인하러 가기",
+    
+    "forgot_title": "비밀번호를 잊으셨나요?",
+    "forgot_button": "비밀번호 재설정",
+    "forgot_desc": "비밀번호를 재설정하려면 Fableep 계정의 이메일 주소를 입력하세요."
+}
