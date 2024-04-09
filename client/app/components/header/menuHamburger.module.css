@@ -152,6 +152,12 @@
     align-items: center;
     border-radius: 15px;
     transition: var(--transition-duration);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
 }
 .submenu > li:hover {
     background-color: var(--section-background-color);

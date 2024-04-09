@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -11,8 +10,6 @@ export default function LanguageSelector({ language, children }) {
     const currentPathname = usePathname();
 
     const handleChangeLang = () => {
-        console.log(language);
-
         const days = 30;
         const date = new Date();
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
