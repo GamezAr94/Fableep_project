@@ -1,6 +1,4 @@
 import AuthForm from "@/app/components/AuthForm/authForm";
-import TranslationsProvider from "@/app/components/translationsProvider";
-import initTranslations from "@/app/i18n";
 
 import { forgot_password } from "@/lib/actions";
 
