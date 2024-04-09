@@ -28,7 +28,7 @@
     bottom: 0px;
     left: 0px;
 }
-.menuIcon.closeIcon ,
+.menuIcon.closeIcon,
 .menuIcon.closeIcon::after,
 .menuIcon.closeIcon::before {
     transition: var(--transition-duration);

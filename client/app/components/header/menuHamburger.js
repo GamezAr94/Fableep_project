@@ -23,7 +23,7 @@ export default function MenuHamburger() {
             <div className={styles.menuHamburger} onClick={toggleMenu}>
                 <div
                     className={`${styles.menuIcon} 
-                        isClose ? "" : styles.closeIcon
+                        ${isClosed ? "" : styles.closeIcon
                     }`}></div>
             </div>
             <div
