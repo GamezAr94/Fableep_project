@@ -2,6 +2,7 @@ import styles from "./authForm.module.css";
 import TextInput from "@/app/components/AuthForm/textInput";
 import initTranslations from "@/app/i18n";
 import Link from "next/link";
+import BrandIcons from "../SVGIcons/brandIcons";
 
 export default async function AuthForm({ action, type, params, i18n }) {
     const { t } = await initTranslations(params.locale, i18n);
@@ -75,19 +76,25 @@ export default async function AuthForm({ action, type, params, i18n }) {
                 <>
                     <div className={styles.socialBtns}>
                         <button className={styles.button_generic}>
-                            <span>G</span>
+                            <span>
+                                <BrandIcons type="google" size="18" />
+                            </span>
                             {t("authenticate:continue_with", {
                                 appname: "Google",
                             })}
                         </button>
                         <button className={styles.button_generic}>
-                            <span>F</span>
+                            <span>
+                                <BrandIcons type="facebook" size="18" />
+                            </span>
                             {t("authenticate:continue_with", {
                                 appname: "Facebook",
                             })}
                         </button>
                         <button className={styles.button_generic}>
-                            <span>A</span>
+                            <span>
+                                <BrandIcons type="apple" size="18" />
+                            </span>
                             {t("authenticate:continue_with", {
                                 appname: "Apple",
                             })}

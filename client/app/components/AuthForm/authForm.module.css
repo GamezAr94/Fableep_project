@@ -48,6 +48,11 @@
     background-color: var(--section-background-color);
     transition: var(--transition-duration);
 }
+.button_generic span svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Form Login */
 .socialBtns,
