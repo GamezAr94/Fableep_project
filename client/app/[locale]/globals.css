@@ -38,6 +38,9 @@
 }
 /* ENDS HERE */
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 
 html {
     /* setting the font settings */
