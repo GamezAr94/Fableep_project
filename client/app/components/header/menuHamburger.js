@@ -5,6 +5,7 @@ import { useState } from "react";
 import LoginButton from "../inputs/loginButton";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./languageSelector";
+import Symbols from "../SVGIcons/symbols";
 
 export default function MenuHamburger() {
     const { t } = useTranslation();
@@ -23,8 +24,7 @@ export default function MenuHamburger() {
             <div className={styles.menuHamburger} onClick={toggleMenu}>
                 <div
                     className={`${styles.menuIcon} 
-                        ${isClosed ? "" : styles.closeIcon
-                    }`}></div>
+                        ${isClosed ? "" : styles.closeIcon}`}></div>
             </div>
             <div
                 className={`${styles.menuContainer} ${
@@ -54,7 +54,12 @@ export default function MenuHamburger() {
                             }`}
                             onClick={showSubMenu}>
                             {t("publicMenu:language")}
-                            <span>\/</span>
+                            <span
+                                className={
+                                    isSubMenuLangClosed ? styles.closed : ""
+                                }>
+                                <Symbols type="arrow" size="40" />
+                            </span>
                         </li>
                         <ul
                             className={`${styles.submenu} ${
