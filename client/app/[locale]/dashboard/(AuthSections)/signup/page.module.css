@@ -1,0 +1,28 @@
+.splash {
+    display: none;
+}
+@media (min-width: 1050px) {
+    .main {
+        display: flex;
+        margin: 0 auto;
+        max-width: 1400px;
+        justify-content: space-evenly;
+    }
+    .main > div {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .behind {
+        position: absolute;
+        z-index: -1;
+        opacity: .6;
+    }
+    .splash {
+        width: 35%;
+        min-width: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+}
