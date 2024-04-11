@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 const config = require("./config/config");
 const app = express();
@@ -11,6 +12,12 @@ const authRoutes = require("./routes/authRoutes");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+// database connection
+mongoose
+    .connect(config.dbconnection)
+    .then((result) => app.listen(3000))
+    .catch((err) => console.log(err));
 
 app.use(config.api_version, authRoutes);
 

@@ -4,9 +4,9 @@ import { redirect } from "next/navigation";
 
 // function that will perform the signup process
 export async function signup(formData) {
-    // do some validdation of password and username
+    // do some validdation for password and email
     const rawData = {
-        username: formData.get("username"),
+        email: formData.get("email"),
         password: formData.get("password"),
     };
     const res = await fetch(
@@ -28,9 +28,9 @@ export async function signup(formData) {
 
 // function that will perform the login process
 export async function login(formData) {
-    // do some validdation of password and username
+    // do some validdation for password and email
     const rawData = {
-        username: formData.get("username"),
+        username: formData.get("email"),
         password: formData.get("password"),
     };
     const res = await fetch(

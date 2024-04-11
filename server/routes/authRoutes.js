@@ -6,7 +6,7 @@ const usersController = require("../controllers/authControllers");
 // Register a new user
 router.post("/signup", usersController.postSignup);
 
-// Register a new user
+// Get all users
 router.get("/getusers", usersController.getUsers);
 
 // Register a new user

@@ -107,7 +107,7 @@ export default async function AuthForm({ action, type, params, i18n }) {
                 <TextInput
                     type="text"
                     label={t("authenticate:email")}
-                    name="username"
+                    name="email"
                     placeholder={t("authenticate:enter_email")}
                 />
                 {type == "password" ? (
