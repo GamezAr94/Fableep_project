@@ -16,7 +16,7 @@ app.use(cors());
 // database connection
 mongoose
     .connect(config.dbconnection)
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(config.dbport))
     .catch((err) => console.log(err));
 
 app.use(config.api_version, authRoutes);
