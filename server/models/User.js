@@ -1,61 +1,31 @@
 const mongoose = require("mongoose");
+const { isEmail } = require("validator");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, "Please enter an email"],
         unique: true,
         lowercase: true,
+        validate: [isEmail, "Please enter a valid email"],
     },
     password: {
         type: String,
-        required: true,
-        minLength: 6,
+        required: [true, "Please enter a password"],
+        minlength: [6, "Minimum password length is 6 characters"],
     },
+});
+
+// express hook: fire a function BEFORE dox saved to db
+// hashing the password so we are not storing it in plain text
+userSchema.pre("save", async function (next) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    // calling next to exit this hook
+    next();
 });
 
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;
-
-/*
-const users = [];
-
-class User {
-    constructor(username, password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    // save user to the array
-    save() {
-        // Check if user already exists
-        if (users.some((user) => user.username === this.username)) {
-            return { success: false, message: "User already exists" };
-        }
-
-        // Store user credentials
-        users.push(this);
-        return { success: true, message: "User created successfully" };
-    }
-
-    static fetchAll() {
-        return users;
-    }
-
-    login() {
-        if (
-            users.some((user) => user.username === this.username) &&
-            users.some((user) => user.password === this.password)
-        ) {
-            return { success: true, message: "User loged in successfully" };
-        }
-        return {
-            success: false,
-            message: "username or password doesn't match",
-        };
-    }
-}
-
-module.exports = User;
-*/
