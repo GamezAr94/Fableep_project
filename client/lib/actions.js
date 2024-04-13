@@ -33,9 +33,10 @@ export async function signup(formData) {
             cookies().set({
                 name: "token_auth",
                 value: data.token,
-                secure: true,
+                secure: process.env.NODE_ENV === true,
                 httpOnly: true,
                 path: "/",
+                sameSite: "strict",
                 maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
             });
             console.log(data);
