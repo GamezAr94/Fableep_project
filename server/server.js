@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 const config = require("./config/config");
 const app = express();
@@ -8,19 +9,22 @@ const app = express();
 // setting Routes
 const authRoutes = require("./routes/authRoutes");
 
-// Middleware to parse JSON bodies
+// enabling CORS for specific origins only
+let corsOptions = {
+    origin : ['http://localhost:3000'],
+    credentials: true,
+}
+// Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 // database connection
 mongoose
     .connect(config.dbconnection)
-    .then((result) => app.listen(config.dbport))
+    .then((result) => app.listen(config.port))
     .catch((err) => console.log(err));
 
+// routes
 app.use(config.api_version, authRoutes);
-
-app.listen(config.port, () => {
-    console.log(`Server started on port ${config.port}`);
-});

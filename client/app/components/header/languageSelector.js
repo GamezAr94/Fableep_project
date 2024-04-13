@@ -10,9 +10,9 @@ export default function LanguageSelector({ language, children }) {
     const currentPathname = usePathname();
 
     const handleChangeLang = () => {
-        const days = 30;
+        const days = process.env.I18N_EXPIRES_IN;
         const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        date.setTime(date.getTime() + days * 24 * 60 * 60);
         const expires = "; expires=" + date.toUTCString();
         document.cookie = `NEXT_LOCALE=${language};expires=${expires};path=/`;
 
