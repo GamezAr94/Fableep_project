@@ -17,10 +17,7 @@ export const viewport = {
 const i18nNamespaces = ["publicMenu"];
 
 export default async function RootLayout({ params, children }) {
-    const { resources } = await initTranslations(
-        params.locale,
-        i18nNamespaces
-    );
+    const { resources } = await initTranslations(params.locale, i18nNamespaces);
     return (
         <html lang={params.locale}>
             <body>

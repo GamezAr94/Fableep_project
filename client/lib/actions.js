@@ -113,7 +113,23 @@ export async function login(formData) {
     redirect("/dashboard");
 }
 
-// function that will perform the login process
-export async function forgot_password(formData) {
-    console.log("forgot password");
+// function to authorize the access to some routes
+export async function authAccessRoute(token_name) {
+    const cookie_token = cookies().get(token_name);
+    try {
+        const res = await fetch(
+            `${process.env.IP}/${process.env.API}/${process.env.VERSION}/auth-token`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cookie_token),
+            }
+        );
+        const data = await res.json();
+        return data.status;
+    } catch (err) {
+        return false;
+    }
 }

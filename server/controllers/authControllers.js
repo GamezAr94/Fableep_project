@@ -74,8 +74,17 @@ exports.postLogin = async (req, res) => {
 };
 
 // Controller to fetch all the users
-exports.getUsers = (req, res) => {
-    const users = User.fetchAll();
-    console.log(users);
-    return res.status(201).json(users);
+exports.authToken = (req, res) => {
+    const { name, value } = req.body;
+    if (name === "token_auth" && value) {
+        jwt.verify(value, config.jwt_secret, (err, decodedToken) => {
+            if (err) {
+                return res.status(200).json({ status: false });
+            } else {
+                return res.status(201).json({ status: true });
+            }
+        });
+        return;
+    }
+    return res.status(201).json({ status: false });
 };
