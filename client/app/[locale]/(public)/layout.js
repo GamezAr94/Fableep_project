@@ -1,5 +1,5 @@
-import "./globals.css";
-import Header from "../components/header/header";
+import "../globals.css";
+import Header from "../../components/header/header";
 import TranslationsProvider from "@/app/components/translationsProvider";
 import initTranslations from "@/app/i18n";
 
@@ -25,7 +25,7 @@ export default async function RootLayout({ params, children }) {
                     resources={resources}
                     locale={params.locale}
                     namespaces={i18nNamespaces}>
-                    <Header />
+                    <Header menuType={"public"} />
                 </TranslationsProvider>
                 {children}
             </body>

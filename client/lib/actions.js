@@ -133,3 +133,6 @@ export async function authAccessRoute(token_name) {
         return false;
     }
 }
+
+// TODO add this functionality for the password page
+export async function forgot_password() {}
