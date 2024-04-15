@@ -3,6 +3,8 @@ import TextInput from "@/app/components/AuthForm/textInput";
 import initTranslations from "@/app/i18n";
 import Link from "next/link";
 import BrandIcons from "../SVGIcons/brandIcons";
+import RegisterFormSubmit from "./registerFormSubmit";
+import ActionForm from "./actionForm";
 
 export default async function AuthForm({ action, type, params, i18n }) {
     const { t } = await initTranslations(params.locale, i18n);
@@ -103,27 +105,12 @@ export default async function AuthForm({ action, type, params, i18n }) {
                     <hr></hr>
                 </>
             )}
-            <form action={action} className={styles.form}>
-                <TextInput
-                    type="text"
-                    label={t("authenticate:email")}
-                    name="email"
-                    placeholder={t("authenticate:enter_email")}
-                />
-                {type == "password" ? (
-                    ""
-                ) : (
-                    <TextInput
-                        type="password"
-                        name="password"
-                        label={t("authenticate:password")}
-                        placeholder={t("authenticate:enter_pass")}
-                    />
-                )}
-                <div>
-                    <button>{button}</button>
-                </div>
-            </form>
+            <ActionForm
+                action={action}
+                className={styles.form}
+                type={type}
+                button={button}
+            />
             {terms_n_conditions}
             <hr></hr>
             {redirect_link}

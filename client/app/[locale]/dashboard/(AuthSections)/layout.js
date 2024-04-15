@@ -13,12 +13,21 @@ export const viewport = {
     themeColor: "#D18255",
 };
 
-export default function RootLayout({ children }) {
+// Languages
+const i18nNamespaces = ["authenticate"];
+
+export default async function RootLayout({ params, children }) {
+    const { resources } = await initTranslations(params.locale, i18nNamespaces);
     return (
         <html lang="en">
             <body>
                 <Header />
-                {children}
+                <TranslationsProvider
+                    resources={resources}
+                    locale={params.locale}
+                    namespaces={i18nNamespaces}>
+                    {children}
+                </TranslationsProvider>
             </body>
         </html>
     );

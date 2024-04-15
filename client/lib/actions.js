@@ -3,13 +3,20 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-// function that will perform the signup process
-export async function signup(formData) {
+/**
+ * function that will perform the signup process
+ *
+ * @param {object} formData the values from the form email and password
+ * @returns
+ */
+export async function signup(prevState, formData) {
     // TODO: do some validdation for password and email
     const rawData = {
         email: formData.get("email"),
         password: formData.get("password"),
     };
+
+    await addTimeOut();
 
     // send the request to the backend
     try {
@@ -25,11 +32,9 @@ export async function signup(formData) {
         );
         const data = await res.json();
         if (data.errors) {
-            // TODO display the errors in the client
-            console.log(data.errors);
-            return;
+            return data.errors;
         } else if (data.user && data.jwt_token) {
-            // set the cookie to authorize the user
+            // if we are here we need to set the cookie to authorize the user
             cookies().set({
                 name: "token_auth",
                 value: data.jwt_token,
@@ -39,32 +44,37 @@ export async function signup(formData) {
                 sameSite: "strict",
                 maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
             });
-            console.log(data);
         } else {
-            // TODO unexpected error
-            // if we are here then that means that there is an unhandled error
-            // we dont have errors and we dont have the user and token
-            console.log(data);
-            console.log("UNEXPECTED ERROR!!!");
-            return;
+            // TODO server error
+            let errors = { unexpected: "" };
+            errors.unexpected = "unexpected error: please try again later";
+            return errors;
         }
     } catch (err) {
-        // there is a problem with the server
-        console.log(err.message);
-        return;
+        // TODO server error
+        let errors = { unexpected: "" };
+        errors.unexpected = "unexpected error: please try again later";
+        return errors;
     }
 
     // if we are here that means that the signup was successfully
     redirect("/dashboard");
 }
 
-// function that will perform the login process
-export async function login(formData) {
+/**
+ * function that will perform the login process
+ *
+ * @param {object} formData an object containing the email and password
+ * @returns
+ */
+export async function login(prevState, formData) {
     // TODO: do some validdation for password and email
     const rawData = {
         username: formData.get("email"),
         password: formData.get("password"),
     };
+
+    await addTimeOut();
 
     // send the request to the backend
     try {
@@ -80,11 +90,9 @@ export async function login(formData) {
         );
         const data = await res.json();
         if (data.errors) {
-            // TODO display the errors in the client
-            console.log(data.errors);
-            return;
+            return data.errors;
         } else if (data.user && data.jwt_token) {
-            // set the cookie to authorize the user
+            // If success then set the cookie to authorize the user
             cookies().set({
                 name: "token_auth",
                 value: data.jwt_token,
@@ -94,28 +102,34 @@ export async function login(formData) {
                 sameSite: "strict",
                 maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
             });
-            console.log(data);
         } else {
-            // TODO unexpected error
-            // if we are here then that means that there is an unhandled error
-            // we dont have errors and we dont have the user and token
-            console.log(data);
-            console.log("UNEXPECTED ERROR!!!");
-            return;
+            // TODO server error
+            let errors = { unexpected: "" };
+            errors.unexpected = "unexpected error: please try again later";
+            return errors;
         }
     } catch (err) {
-        // there is a problem with the server
-        console.log(err.message);
-        return;
+        // TODO server error
+        let errors = { unexpected: "" };
+        errors.unexpected = "unexpected error: please try again later";
+        return errors;
     }
 
     // if we are here that means that the signup was successfully
     redirect("/dashboard");
 }
 
-// function to authorize the access to some routes
+/**
+ * function to authorize the access to some routes
+ *
+ * @param {string} token_name the name of the cookie
+ * @returns boolean true if autorized false otherwise
+ */
 export async function authAccessRoute(token_name) {
-    const cookie_token = cookies().get(token_name);
+    const cookie_token = cookies().get((token_name = "token_auth"));
+
+    await addTimeOut();
+
     try {
         const res = await fetch(
             `${process.env.IP}/${process.env.API}/${process.env.VERSION}/auth-token`,
@@ -134,5 +148,13 @@ export async function authAccessRoute(token_name) {
     }
 }
 
+// TODO temporal function to add some timeOut and test the loading functionalities
+// Simulate loading status for 2 seconds
+async function addTimeOut(sec = 2) {
+    await new Promise((resolve) => setTimeout(resolve, sec * 1000));
+}
+
 // TODO add this functionality for the password page
-export async function forgot_password() {}
+export async function forgot_password(prevState, formData) {
+    addTimeOut();
+}

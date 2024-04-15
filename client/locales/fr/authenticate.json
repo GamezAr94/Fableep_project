@@ -23,5 +23,7 @@
     
     "forgot_title": "Mot de passe oublié?",
     "forgot_button": "Réinitialiser mon mot de passe",
-    "forgot_desc": "Pour réinitialiser votre mot de passe, veuillez entrer l'adresse e-mail de votre compte Fableep."    
+    "forgot_desc": "Pour réinitialiser votre mot de passe, veuillez entrer l'adresse e-mail de votre compte Fableep.",
+
+    "submitting": "Soumission..."
 }

@@ -23,5 +23,7 @@
     
     "forgot_title": "Hai dimenticato la password?",
     "forgot_button": "Reimposta la mia password",
-    "forgot_desc": "Per reimpostare la tua password, inserisci l'indirizzo email del tuo account Fableep."    
+    "forgot_desc": "Per reimpostare la tua password, inserisci l'indirizzo email del tuo account Fableep.",
+
+    "submitting": "Invio..."
 }

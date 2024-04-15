@@ -23,5 +23,7 @@
     
     "forgot_title": "비밀번호를 잊으셨나요?",
     "forgot_button": "비밀번호 재설정",
-    "forgot_desc": "비밀번호를 재설정하려면 Fableep 계정의 이메일 주소를 입력하세요."
+    "forgot_desc": "비밀번호를 재설정하려면 Fableep 계정의 이메일 주소를 입력하세요.",
+
+    "submitting": "제출 중..."
 }

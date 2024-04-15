@@ -23,5 +23,7 @@
 
     "forgot_title": "Forgot your password?",
     "forgot_button": "Reset my password",
-    "forgot_desc": "To reset your password, please enter the email address of your Fableep account."
+    "forgot_desc": "To reset your password, please enter the email address of your Fableep account.",
+
+    "submitting": "Submitting..."
 }

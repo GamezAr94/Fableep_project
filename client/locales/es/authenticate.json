@@ -23,5 +23,7 @@
     
     "forgot_title": "¿Olvidaste tu contraseña?",
     "forgot_button": "Restablecer mi contraseña",
-    "forgot_desc": "Para restablecer tu contraseña, por favor ingresa la dirección de correo electrónico de tu cuenta de Fableep."
+    "forgot_desc": "Para restablecer tu contraseña, por favor ingresa la dirección de correo electrónico de tu cuenta de Fableep.",
+
+    "submitting": "Enviando..."
 }
