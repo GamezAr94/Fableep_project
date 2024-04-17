@@ -16,7 +16,7 @@ export async function signup(prevState, formData) {
         password: formData.get("password"),
     };
 
-    await addTimeOut();
+    //await addTimeOut();
 
     // send the request to the backend
     try {
@@ -32,6 +32,7 @@ export async function signup(prevState, formData) {
         );
         const data = await res.json();
         if (data.errors) {
+            data.errors.id = Math.random();
             return data.errors;
         } else if (data.user && data.jwt_token) {
             // if we are here we need to set the cookie to authorize the user
@@ -46,13 +47,13 @@ export async function signup(prevState, formData) {
             });
         } else {
             // TODO server error
-            let errors = { unexpected: "" };
+            let errors = { unexpected: "", id: Math.random() };
             errors.unexpected = "unexpected error: please try again later";
             return errors;
         }
     } catch (err) {
         // TODO server error
-        let errors = { unexpected: "" };
+        let errors = { unexpected: "", id: Math.random() };
         errors.unexpected = "unexpected error: please try again later";
         return errors;
     }
@@ -90,6 +91,7 @@ export async function login(prevState, formData) {
         );
         const data = await res.json();
         if (data.errors) {
+            data.errors.id = Math.random();
             return data.errors;
         } else if (data.user && data.jwt_token) {
             // If success then set the cookie to authorize the user
@@ -104,13 +106,13 @@ export async function login(prevState, formData) {
             });
         } else {
             // TODO server error
-            let errors = { unexpected: "" };
+            let errors = { unexpected: "", id: Math.random() };
             errors.unexpected = "unexpected error: please try again later";
             return errors;
         }
     } catch (err) {
         // TODO server error
-        let errors = { unexpected: "" };
+        let errors = { unexpected: "", id: Math.random() };
         errors.unexpected = "unexpected error: please try again later";
         return errors;
     }
@@ -141,6 +143,7 @@ export async function authAccessRoute(token_name) {
                 body: JSON.stringify(cookie_token),
             }
         );
+        data.errors.id = Math.random();
         const data = await res.json();
         return data.status;
     } catch (err) {

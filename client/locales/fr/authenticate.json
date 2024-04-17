@@ -25,5 +25,13 @@
     "forgot_button": "Réinitialiser mon mot de passe",
     "forgot_desc": "Pour réinitialiser votre mot de passe, veuillez entrer l'adresse e-mail de votre compte Fableep.",
 
-    "submitting": "Soumission..."
+    "submitting": "Soumission...",
+
+    "not_existing_email": "Cet e-mail n'est pas enregistré",
+    "duplicated_email": "L'e-mail est déjà enregistré",
+    "empty_email": "Veuillez saisir un e-mail",
+    "not_valid_email": "Veuillez saisir un e-mail valide",
+    "empty_password": "Veuillez saisir un mot de passe",
+    "not_valid_password": "Ce mot de passe est incorrect",
+    "min_password": "La longueur minimale du mot de passe est de 6 caractères"
 }

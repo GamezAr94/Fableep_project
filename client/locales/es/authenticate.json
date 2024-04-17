@@ -25,5 +25,13 @@
     "forgot_button": "Restablecer mi contraseña",
     "forgot_desc": "Para restablecer tu contraseña, por favor ingresa la dirección de correo electrónico de tu cuenta de Fableep.",
 
-    "submitting": "Enviando..."
+    "submitting": "Enviando...",
+
+    "not_existing_email": "Ese correo electrónico no está registrado",
+    "duplicated_email": "El correo electrónico ya está registrado",
+    "empty_email": "Por favor ingrese un correo electrónico",
+    "not_valid_email": "Por favor ingrese un correo electrónico válido",
+    "empty_password": "Por favor ingrese una contraseña",
+    "not_valid_password": "La contraseña es incorrecta",
+    "min_password": "La longitud mínima de la contraseña es de 6 caracteres"
 }

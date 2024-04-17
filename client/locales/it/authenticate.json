@@ -25,5 +25,13 @@
     "forgot_button": "Reimposta la mia password",
     "forgot_desc": "Per reimpostare la tua password, inserisci l'indirizzo email del tuo account Fableep.",
 
-    "submitting": "Invio..."
+    "submitting": "Invio...",
+
+    "not_existing_email": "Quell'email non è registrata",
+    "duplicated_email": "L'email è già registrata",
+    "empty_email": "Inserisci un'email",
+    "not_valid_email": "Inserisci un'email valida",
+    "empty_password": "Inserisci una password",
+    "not_valid_password": "La password non è corretta",
+    "min_password": "La lunghezza minima della password è di 6 caratteri"
 }

@@ -1,9 +1,7 @@
 import styles from "./authForm.module.css";
-import TextInput from "@/app/components/AuthForm/textInput";
 import initTranslations from "@/app/i18n";
 import Link from "next/link";
 import BrandIcons from "../SVGIcons/brandIcons";
-import RegisterFormSubmit from "./registerFormSubmit";
 import ActionForm from "./actionForm";
 
 export default async function AuthForm({ action, type, params, i18n }) {

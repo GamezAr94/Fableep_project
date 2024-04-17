@@ -25,5 +25,13 @@
     "forgot_button": "Reset my password",
     "forgot_desc": "To reset your password, please enter the email address of your Fableep account.",
 
-    "submitting": "Submitting..."
+    "submitting": "Submitting...",
+
+    "not_existing_email": "That email is not registered",
+    "duplicated_email": "The email is already registered",
+    "empty_email": "Please enter an email",
+    "not_valid_email": "Please enter a valid email",
+    "empty_password": "Please enter a password",
+    "not_valid_password": "That password is incorrect",
+    "min_password": "Minimum password length is 6 characters"
 }

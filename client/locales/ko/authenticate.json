@@ -25,5 +25,13 @@
     "forgot_button": "비밀번호 재설정",
     "forgot_desc": "비밀번호를 재설정하려면 Fableep 계정의 이메일 주소를 입력하세요.",
 
-    "submitting": "제출 중..."
+    "submitting": "제출 중...",
+
+    "not_existing_email": "그 이메일은 등록되어 있지 않습니다",
+    "duplicated_email": "이 이메일은 이미 등록되어 있습니다",
+    "empty_email": "이메일을 입력하세요",
+    "not_valid_email": "유효한 이메일을 입력하세요",
+    "empty_password": "비밀번호를 입력하세요",
+    "not_valid_password": "비밀번호가 올바르지 않습니다",
+    "min_password": "최소 비밀번호 길이는 6자입니다"
 }

@@ -9,25 +9,23 @@ const handleErrors = (err) => {
 
     // incorrect email
     if (err.message === "Incorrect email") {
-        errors.email = "That email is not registered";
+        errors.email = "authenticate:not_existing_email";
     }
 
     // incorrect password
     if (err.message === "Incorrect password") {
-        errors.password = "That password is incorrect";
+        errors.password = "authenticate:not_valid_password";
     }
 
     // duplicate error code
     if (err.code === 11000) {
-        // TODO: set the i18n return an object maybe
-        errors.email = "The email is already registered";
+        errors.email = "authenticate:duplicated_email";
         return errors;
     }
 
     // validation errors
     if (err.message.includes("user validation failed")) {
         Object.values(err.errors).forEach(({ properties }) => {
-            // TODO: set the i18n return an object maybe
             errors[properties.path] = properties.message;
         });
     }
