@@ -21,11 +21,11 @@ export default async function RootLayout({ params, children }) {
     return (
         <html lang="en">
             <body>
-                <Header />
                 <TranslationsProvider
                     resources={resources}
                     locale={params.locale}
                     namespaces={i18nNamespaces}>
+                    <Header />
                     {children}
                 </TranslationsProvider>
             </body>
