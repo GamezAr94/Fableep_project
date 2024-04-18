@@ -48,9 +48,11 @@ export default function TextInput({ type, name, placeholder, error, updateError,
         }
     }, [isShowPass]);
 
+    const isError = error ? styles.error_input : '';
+
     return (
         <div>
-            <div className={styles.input_wrap} onClick={updateError}>
+            <div className={`${styles.input_wrap} ${isError}`} onClick={updateError}>
                 <p>{label}</p>
                 {getInputState.icon}
                 <input
@@ -59,7 +61,7 @@ export default function TextInput({ type, name, placeholder, error, updateError,
                     placeholder={placeholder}
                 />
             </div>
-            <p>{error}</p>
+            <p className={styles.error_msg}>{error}</p>
         </div>
     );
 }

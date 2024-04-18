@@ -12,6 +12,16 @@ const handleErrors = (err) => {
         errors.email = "authenticate:not_existing_email";
     }
 
+    // incorrect email
+    if (err.message === "Invalid email") {
+        errors.email = "authenticate:not_valid_email";
+    }
+
+    // empty email
+    if (err.message === "Empty email") {
+        errors.email = "authenticate:empty_email";
+    }
+
     // incorrect password
     if (err.message === "Incorrect password") {
         errors.password = "authenticate:not_valid_password";

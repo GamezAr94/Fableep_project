@@ -28,6 +28,12 @@ userSchema.pre("save", async function (next) {
 
 // static method to login user
 userSchema.statics.login = async function (email, password) {
+    if (email.trim().length === 0) {
+        throw Error("Empty email");
+    }
+    if (!isEmail(email)) {
+        throw Error("Invalid email");
+    }
     const user = await this.findOne({ email });
     if (user) {
         const auth = await bcrypt.compare(password, user.password);
