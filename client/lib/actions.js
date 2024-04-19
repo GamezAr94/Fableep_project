@@ -142,8 +142,6 @@ export async function login(prevState, formData) {
 export async function authAccessRoute(token_name) {
     const cookie_token = cookies().get((token_name = "token_auth"));
 
-    await addTimeOut();
-
     try {
         const res = await fetch(
             `${process.env.IP}/${process.env.API}/${process.env.VERSION}/auth-token`,
@@ -155,7 +153,6 @@ export async function authAccessRoute(token_name) {
                 body: JSON.stringify(cookie_token),
             }
         );
-        data.errors.id = Math.random();
         const data = await res.json();
         return data.status;
     } catch (err) {
@@ -169,8 +166,8 @@ export async function forgot_password(prevState, formData) {
 }
 
 /**
- * This function will validate the data received from the form 
- * 
+ * This function will validate the data received from the form
+ *
  * @param {object} rawData this object accepts {email: '', password: ''}
  * @returns the object {email: '', password: '', id: ''} the id will help
  *          to refresh the useState
@@ -193,7 +190,7 @@ function validateFormInput(rawData) {
 }
 /**
  * This function will validate a string as an email
- *  
+ *
  * @param {string} email the string to validate as an email
  * @returns TRUE if valid FALSE otherwise
  */
@@ -204,7 +201,7 @@ function validateEmail(email) {
 }
 /**
  * This function will validate a string as a valid password
- *  
+ *
  * @param {string} email the string to validate as a valid password
  * @returns TRUE if greater or equals than 6 FALSE otherwise
  */
