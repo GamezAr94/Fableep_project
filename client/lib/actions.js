@@ -16,6 +16,12 @@ export async function signup(prevState, formData) {
         password: formData.get("password"),
     };
 
+    // validate the form before sending it to the backend
+    const errors = validateFormInput(rawData);
+    if (errors) {
+        return errors;
+    }
+
     //await addTimeOut();
 
     // send the request to the backend
@@ -48,13 +54,13 @@ export async function signup(prevState, formData) {
         } else {
             // TODO server error
             let errors = { unexpected: "", id: Math.random() };
-            errors.unexpected = "unexpected error: please try again later";
+            errors.unexpected = "authenticate:unexpected_server_err";
             return errors;
         }
     } catch (err) {
         // TODO server error
         let errors = { unexpected: "", id: Math.random() };
-        errors.unexpected = "unexpected error: please try again later";
+        errors.unexpected = "authenticate:unexpected_server_err";
         return errors;
     }
 
@@ -71,11 +77,17 @@ export async function signup(prevState, formData) {
 export async function login(prevState, formData) {
     // TODO: do some validdation for password and email
     const rawData = {
-        username: formData.get("email"),
+        email: formData.get("email"),
         password: formData.get("password"),
     };
 
-    await addTimeOut();
+    // validate the form before sending it to the backend
+    const errors = validateFormInput(rawData);
+    if (errors) {
+        return errors;
+    }
+
+    //await addTimeOut();
 
     // send the request to the backend
     try {
@@ -107,13 +119,13 @@ export async function login(prevState, formData) {
         } else {
             // TODO server error
             let errors = { unexpected: "", id: Math.random() };
-            errors.unexpected = "unexpected error: please try again later";
+            errors.unexpected = "authenticate:unexpected_server_err";
             return errors;
         }
     } catch (err) {
         // TODO server error
         let errors = { unexpected: "", id: Math.random() };
-        errors.unexpected = "unexpected error: please try again later";
+        errors.unexpected = "authenticate:unexpected_server_err";
         return errors;
     }
 
@@ -151,13 +163,58 @@ export async function authAccessRoute(token_name) {
     }
 }
 
+// TODO add this functionality for the password page
+export async function forgot_password(prevState, formData) {
+    addTimeOut();
+}
+
+/**
+ * This function will validate the data received from the form 
+ * 
+ * @param {object} rawData this object accepts {email: '', password: ''}
+ * @returns the object {email: '', password: '', id: ''} the id will help
+ *          to refresh the useState
+ */
+function validateFormInput(rawData) {
+    // Doing the client validation before sending the data to the server
+    const errors = { email: null, password: null, id: null };
+    if (rawData.email.trim() <= 0) {
+        errors.email = "authenticate:empty_email";
+    } else if (!validateEmail(rawData.email)) {
+        errors.email = "authenticate:not_valid_email";
+    }
+    if (!validatePassword(rawData.password)) {
+        errors.password = "authenticate:min_password";
+    }
+    if (errors.email || errors.password) {
+        errors.id = Math.random();
+        return errors;
+    }
+}
+/**
+ * This function will validate a string as an email
+ *  
+ * @param {string} email the string to validate as an email
+ * @returns TRUE if valid FALSE otherwise
+ */
+function validateEmail(email) {
+    // Regular expression to validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+/**
+ * This function will validate a string as a valid password
+ *  
+ * @param {string} email the string to validate as a valid password
+ * @returns TRUE if greater or equals than 6 FALSE otherwise
+ */
+function validatePassword(password) {
+    // Check if password is a string and has minimum length of 6 characters
+    return typeof password === "string" && password.length >= 6;
+}
+
 // TODO temporal function to add some timeOut and test the loading functionalities
 // Simulate loading status for 2 seconds
 async function addTimeOut(sec = 2) {
     await new Promise((resolve) => setTimeout(resolve, sec * 1000));
-}
-
-// TODO add this functionality for the password page
-export async function forgot_password(prevState, formData) {
-    addTimeOut();
 }

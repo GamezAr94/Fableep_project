@@ -33,5 +33,7 @@
     "not_valid_email": "Por favor ingrese un correo electrónico válido",
     "empty_password": "Por favor ingrese una contraseña",
     "not_valid_password": "La contraseña es incorrecta",
-    "min_password": "La longitud mínima de la contraseña es de 6 caracteres"
+    "min_password": "La longitud mínima de la contraseña es de 6 caracteres",
+    "unexpected_server_err": "Error inesperado: Por favor, inténtelo de nuevo más tarde"
+
 }

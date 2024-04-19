@@ -33,5 +33,6 @@
     "not_valid_email": "유효한 이메일을 입력하세요",
     "empty_password": "비밀번호를 입력하세요",
     "not_valid_password": "비밀번호가 올바르지 않습니다",
-    "min_password": "최소 비밀번호 길이는 6자입니다"
+    "min_password": "최소 비밀번호 길이는 6자입니다",
+    "unexpected_server_err": "예기치 않은 오류: 나중에 다시 시도해주세요"
 }

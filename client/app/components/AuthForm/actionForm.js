@@ -5,6 +5,7 @@ import RegisterFormSubmit from "./registerFormSubmit";
 import TextInput from "./textInput";
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
+import ToastMessage from "../ErrorElements/toastMessage";
 
 export default function ActionForm({ action, className, type, button }) {
     const [state, formAction] = useFormState(action, {
@@ -15,9 +16,18 @@ export default function ActionForm({ action, className, type, button }) {
     const { t } = useTranslation();
 
     // Functionality to refresh the errors
-    const [getErr, setErr] = useState(state.email);
+    const [getErr, setErr] = useState("");
+    const [getTimeOut, setTimeOut] = useState(null);
     useEffect(() => {
         setErr(state);
+        if (state?.unexpected && !getTimeOut) {
+            setTimeOut(
+                setTimeout(() => {
+                    setErr("");
+                    setTimeOut(null);
+                }, 3000)
+            );
+        }
     }, [state.id]);
     //function to refresh the email error
     function updateErrEmail() {
@@ -30,7 +40,11 @@ export default function ActionForm({ action, className, type, button }) {
 
     return (
         <>
-            {state?.unexpected ? state.unexpected : ""}
+            {state?.unexpected ? (
+                <ToastMessage message={t(getErr.unexpected)} setErr={setErr} />
+            ) : (
+                ""
+            )}
             <form action={formAction} className={className}>
                 <TextInput
                     type="text"

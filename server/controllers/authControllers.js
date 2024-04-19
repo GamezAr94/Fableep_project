@@ -66,10 +66,10 @@ exports.postSignup = async (req, res) => {
 
 // Controller to login the user
 exports.postLogin = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const user = await User.login(username, password);
+        const user = await User.login(email, password);
         if (user) {
             const token = createToken(user._id);
             return res.status(200).json({ user: user._id, jwt_token: token });

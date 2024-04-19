@@ -56,7 +56,7 @@ html {
     --main-background-color: #fff;
     --primary-color: #ca6f39;
     --primary-color-hover: #b66333;
-    --basic-error-color: rgb(219 38 38);
+    --basic-error-color: rgb(223, 79, 79);
     --light-primary-color: #E8C1AA;
     --backdrop-color: rgba(52, 52, 55, 0.5);
     --backdrop-blur: blur(4px);

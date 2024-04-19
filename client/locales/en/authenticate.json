@@ -33,5 +33,6 @@
     "not_valid_email": "Please enter a valid email",
     "empty_password": "Please enter a password",
     "not_valid_password": "That password is incorrect",
-    "min_password": "Minimum password length is 6 characters"
+    "min_password": "Minimum password length is 6 characters",
+    "unexpected_server_err": "Unexpected Error: Please try again later"
 }

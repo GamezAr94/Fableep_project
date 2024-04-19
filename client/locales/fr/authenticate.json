@@ -33,5 +33,6 @@
     "not_valid_email": "Veuillez saisir un e-mail valide",
     "empty_password": "Veuillez saisir un mot de passe",
     "not_valid_password": "Ce mot de passe est incorrect",
-    "min_password": "La longueur minimale du mot de passe est de 6 caractères"
+    "min_password": "La longueur minimale du mot de passe est de 6 caractères",
+    "unexpected_server_err": "Erreur inattendue : Veuillez réessayer plus tard"
 }
