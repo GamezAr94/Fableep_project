@@ -10,17 +10,18 @@ import { cookies } from "next/headers";
  * @returns
  */
 export async function signup(prevState, formData) {
-    // TODO: do some validdation for password and email
     const rawData = {
         email: formData.get("email"),
         password: formData.get("password"),
     };
 
+    /*
     // validate the form before sending it to the backend
     const errors = validateFormInput(rawData);
     if (errors) {
         return errors;
     }
+    */
 
     //await addTimeOut();
 
@@ -32,12 +33,19 @@ export async function signup(prevState, formData) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "accept-language":
+                        cookies().get("NEXT_LOCALE")?.value || "en",
                 },
                 body: JSON.stringify(rawData),
             }
         );
         const data = await res.json();
-        if (data.errors) {
+        if (data.unexpected) {
+            // set any unexpected error such as the email was not sent
+            let errors = { unexpected: data.unexpected, id: Math.random() };
+            return errors;
+        } else if (data.errors) {
+            // any validation error such as email is empty
             data.errors.id = Math.random();
             return data.errors;
         } else if (data.user && data.jwt_token) {
@@ -52,19 +60,18 @@ export async function signup(prevState, formData) {
                 maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
             });
         } else {
-            // TODO server error
             let errors = { unexpected: "", id: Math.random() };
             errors.unexpected = "authenticate:unexpected_server_err";
             return errors;
         }
     } catch (err) {
-        // TODO server error
         let errors = { unexpected: "", id: Math.random() };
         errors.unexpected = "authenticate:unexpected_server_err";
         return errors;
     }
 
     // if we are here that means that the signup was successfully
+    // TODO instead of redirect to the dashboard send them to check their email
     redirect("/dashboard");
 }
 
@@ -75,7 +82,6 @@ export async function signup(prevState, formData) {
  * @returns
  */
 export async function login(prevState, formData) {
-    // TODO: do some validdation for password and email
     const rawData = {
         email: formData.get("email"),
         password: formData.get("password"),
@@ -97,6 +103,8 @@ export async function login(prevState, formData) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "accept-language":
+                        cookies().get("NEXT_LOCALE")?.value || "en",
                 },
                 body: JSON.stringify(rawData),
             }
@@ -117,13 +125,11 @@ export async function login(prevState, formData) {
                 maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
             });
         } else {
-            // TODO server error
             let errors = { unexpected: "", id: Math.random() };
             errors.unexpected = "authenticate:unexpected_server_err";
             return errors;
         }
     } catch (err) {
-        // TODO server error
         let errors = { unexpected: "", id: Math.random() };
         errors.unexpected = "authenticate:unexpected_server_err";
         return errors;
