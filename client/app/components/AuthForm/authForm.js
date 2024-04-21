@@ -10,6 +10,7 @@ export default async function AuthForm({ action, type, params, i18n }) {
     let button = "";
     let title = "";
     let redirect_link = "";
+    let description = null;
 
     let terms_n_conditions = (
         <p className={styles.terms_n_conditions}>
@@ -57,10 +58,23 @@ export default async function AuthForm({ action, type, params, i18n }) {
         terms_n_conditions = "";
         button = t("authenticate:forgot_button");
         title = t("authenticate:forgot_title");
+        description = <p>{t("authenticate:forgot_desc")}</p>;
         redirect_link = (
             <p className={styles.redirect_link}>
                 <Link href="/dashboard/login">
                     {t("authenticate:go_to_login")}
+                </Link>
+            </p>
+        );
+    } else if (type == "verification") {
+        terms_n_conditions = "";
+        button = t("authenticate:verification_page_button");
+        title = t("authenticate:verification_page_title");
+        description = <p>{t("authenticate:verification_page_desc")}</p>;
+        redirect_link = (
+            <p className={styles.redirect_link}>
+                <Link href="/dashboard/signup">
+                    {t("authenticate:go_signup")}
                 </Link>
             </p>
         );
@@ -70,8 +84,8 @@ export default async function AuthForm({ action, type, params, i18n }) {
             <div className={styles.title}>
                 <p>{title}</p>
             </div>
-            {type == "password" ? (
-                <p>{t("authenticate:forgot_desc")}</p>
+            {description ? (
+                description
             ) : (
                 <>
                     <div className={styles.socialBtns}>

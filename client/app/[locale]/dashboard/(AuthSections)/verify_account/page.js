@@ -2,7 +2,7 @@ import AuthForm from "@/app/components/AuthForm/authForm";
 import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 
-import { authAccessRoute, forgot_password } from "@/lib/actions";
+import { authAccessRoute, resend_verification_email } from "@/lib/actions";
 import Symbols from "@/app/components/SVGIcons/symbols";
 
 // Languages
@@ -18,9 +18,9 @@ export default async function password({ params }) {
     return (
         <div className={styles.main}>
             <AuthForm
-                action={forgot_password}
+                action={resend_verification_email}
                 i18n={i18nNamespaces}
-                type="password"
+                type="verification"
                 params={params}
             />
             <div className={styles.splash}>

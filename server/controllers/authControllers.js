@@ -53,7 +53,7 @@ const emailHandler = async (to, verification, language) => {
         ${getMessage("body_email_verification", language)}
         ${verificationLink}
 
-        ${(getMessage("body_email_verification_footer", language))}
+        ${getMessage("body_email_verification_footer", language)}
         - Fableep :)
     `;
 
@@ -61,7 +61,7 @@ const emailHandler = async (to, verification, language) => {
         from: config.email_user,
         to: to,
         subject: getMessage("subject_email_verification", language),
-        //html: htmlContent,
+        html: htmlContent,
         text: textContent,
     };
     transporter.sendMail(mailOptions, function (error, info) {
@@ -198,4 +198,77 @@ exports.authorized = (req, res) => {
         jwt_status: jwt_s,
         verify_status: verify_s,
     });
+};
+
+/**
+ *
+ * @param {object} req expecting the decoded token and language in the header
+ * @param {object} res the isSent status, message and remaining
+ * @returns
+ */
+exports.sendVerificationEmail = async (req, res) => {
+    const language = req.headers["accept-language"];
+    const decodedToken = req.decoded_token;
+    const userId = decodedToken.id;
+    if (!decodedToken || !userId) {
+        res.status(200).json({
+            isSent: false,
+            message: "error sending the email",
+            remaining: null,
+        });
+    }
+    try {
+        const user = await User.findById(userId);
+        // if we dont have the user with that ID then we shouldnt be here
+        if (!user) {
+            res.status(401).json({
+                isSent: false,
+                message: "error sending the email",
+                remaining: null,
+            });
+        }
+        let lastEmail;
+        // set the value of the verify status only if exists
+        if (user.account_verification) {
+            lastEmail = user.account_verification.tokenGeneratedAt;
+        }
+        // Get the current time
+        const currentTime = new Date();
+        const timeDifference = currentTime - lastEmail;
+
+        // Convert milliseconds to minutes
+        const timeDifferenceMinutes = Math.floor(timeDifference / (1000 * 60));
+
+        if (timeDifferenceMinutes < 5) {
+            // returning the remaining time in milliseconds
+            return res.status(401).json({
+                isSent: false,
+                message: "wait 5 minutes before sending another email",
+                remaining: timeDifference,
+            });
+        }
+
+        // sent the email
+        await emailHandler(
+            user.email,
+            user.account_verification.verificationToken,
+            language
+        );
+
+        // now we need to update the new time in our user
+        user.account_verification.tokenGeneratedAt = currentTime;
+        await user.save();
+
+        return res.status(200).json({
+            isSent: true,
+            message: "email sent successfully",
+            remaining: 0,
+        });
+    } catch (error) {
+        return res.status(401).json({
+            isSent: false,
+            message: "error sending the email",
+            remaining: null,
+        });
+    }
 };

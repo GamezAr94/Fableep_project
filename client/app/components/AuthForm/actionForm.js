@@ -38,6 +38,40 @@ export default function ActionForm({ action, className, type, button }) {
         setErr({ email: getErr.email, password: "" });
     }
 
+    let inputs = (
+        <>
+            <TextInput
+                type="text"
+                label={t("authenticate:email")}
+                name="email"
+                error={getErr?.email ? `${t(getErr.email)}` : ""}
+                updateError={updateErrEmail}
+                placeholder={t("authenticate:enter_email")}
+            />
+            <TextInput
+                type="password"
+                name="password"
+                label={t("authenticate:password")}
+                error={getErr?.password ? `${t(getErr.password)}` : ""}
+                updateError={updateErrPass}
+                placeholder={t("authenticate:enter_pass")}
+            />
+        </>
+    );
+    if (type === "password") {
+        inputs = (
+            <TextInput
+                type="text"
+                label={t("authenticate:email")}
+                name="email"
+                error={getErr?.email ? `${t(getErr.email)}` : ""}
+                updateError={updateErrEmail}
+                placeholder={t("authenticate:enter_email")}
+            />
+        );
+    } else if (type === "verification") {
+        inputs = "";
+    }
     return (
         <>
             {state?.unexpected ? (
@@ -46,26 +80,7 @@ export default function ActionForm({ action, className, type, button }) {
                 ""
             )}
             <form action={formAction} className={className}>
-                <TextInput
-                    type="text"
-                    label={t("authenticate:email")}
-                    name="email"
-                    error={getErr?.email ? `${t(getErr.email)}` : ""}
-                    updateError={updateErrEmail}
-                    placeholder={t("authenticate:enter_email")}
-                />
-                {type == "password" ? (
-                    ""
-                ) : (
-                    <TextInput
-                        type="password"
-                        name="password"
-                        label={t("authenticate:password")}
-                        error={getErr?.password ? `${t(getErr.password)}` : ""}
-                        updateError={updateErrPass}
-                        placeholder={t("authenticate:enter_pass")}
-                    />
-                )}
+                {inputs}
                 <div>
                     <RegisterFormSubmit disabled={t("authenticate:submitting")}>
                         {button}

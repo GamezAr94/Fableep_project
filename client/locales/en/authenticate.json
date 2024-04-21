@@ -34,5 +34,9 @@
     "empty_password": "Please enter a password",
     "not_valid_password": "That password is incorrect",
     "min_password": "Minimum password length is 6 characters",
-    "unexpected_server_err": "Unexpected Error: Please try again later"
+    "unexpected_server_err": "Unexpected Error: Please try again later",
+
+    "verification_page_button": "Resend Email",
+    "verification_page_title": "Verify Your Email",
+    "verification_page_desc": "Please verify your account. Check your email for the confirmation link, and ensure it is not in the spam folder. If you haven't received it within 5 minutes, you can click the button below to resend the email."
 }

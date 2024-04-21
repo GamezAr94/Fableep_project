@@ -143,7 +143,7 @@ export async function login(prevState, formData) {
  * @returns boolean true if autorized false otherwise
  */
 export async function authAccessRoute(token_name) {
-    const cookie_token = cookies().get((token_name = "token_auth"));
+    const cookie_token = cookies().get(token_name || "token_auth");
     let isAuthorized = null;
     try {
         const res = await fetch(
@@ -152,6 +152,8 @@ export async function authAccessRoute(token_name) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "accept-language":
+                        cookies().get("NEXT_LOCALE")?.value || "en",
                 },
                 body: JSON.stringify(cookie_token),
             }
@@ -228,4 +230,35 @@ function validatePassword(password) {
 // Simulate loading status for 2 seconds
 async function addTimeOut(sec = 2) {
     await new Promise((resolve) => setTimeout(resolve, sec * 1000));
+}
+
+export async function resend_verification_email() {
+    const cookie_token = cookies().get("token_auth");
+    // if they dont have the cookie set then this is not the right place
+    if (!cookie_token) {
+        redirect("/dashboard/login");
+    }
+
+    // now we can re send the email
+    let isSent = { emailed: false, message: "no sent", id: 0 };
+    try {
+        const res = await fetch(
+            `${process.env.IP}/${process.env.API}/${process.env.VERSION}/send_verification_email`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "accept-language":
+                        cookies().get("NEXT_LOCALE")?.value || "en",
+                },
+                body: JSON.stringify(cookie_token),
+            }
+        );
+        isSent = await res.json();
+    } catch (error) {
+        isSent.message = "Error sending the email";
+    }
+
+    console.log(isSent);
+    return isSent;
 }
