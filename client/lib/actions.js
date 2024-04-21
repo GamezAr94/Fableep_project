@@ -15,13 +15,11 @@ export async function signup(prevState, formData) {
         password: formData.get("password"),
     };
 
-    /*
     // validate the form before sending it to the backend
     const errors = validateFormInput(rawData);
     if (errors) {
         return errors;
     }
-    */
 
     //await addTimeOut();
 
@@ -70,9 +68,8 @@ export async function signup(prevState, formData) {
         return errors;
     }
 
-    // if we are here that means that the signup was successfully
-    // TODO instead of redirect to the dashboard send them to check their email
-    redirect("/dashboard");
+    // if we are here that means that the signup was successfully and we need to verify the account
+    redirect("/dashboard/verify_account");
 }
 
 /**
@@ -147,7 +144,7 @@ export async function login(prevState, formData) {
  */
 export async function authAccessRoute(token_name) {
     const cookie_token = cookies().get((token_name = "token_auth"));
-
+    let isAuthorized = null;
     try {
         const res = await fetch(
             `${process.env.IP}/${process.env.API}/${process.env.VERSION}/auth-token`,
@@ -159,10 +156,21 @@ export async function authAccessRoute(token_name) {
                 body: JSON.stringify(cookie_token),
             }
         );
-        const data = await res.json();
-        return data.status;
+        isAuthorized = await res.json();
     } catch (err) {
-        return false;
+        isAuthorized = null;
+    }
+    // if the email is not verified we need to send them to the verification page
+    if (isAuthorized.verify_status === false) {
+        redirect("/dashboard/verify_account");
+    }
+    // if the jwt is not valid then we need to send them to the login page
+    if (isAuthorized.jwt_status === false) {
+        redirect("/dashboard/login");
+    }
+    // if there is any other problem then we need to redirect the user to the login page
+    if (isAuthorized === null) {
+        redirect("/dashboard/login");
     }
 }
 

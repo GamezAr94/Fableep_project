@@ -41,6 +41,13 @@ const lanMsg = {
         ko: "비밀번호를 입력하세요",
         fr: "Veuillez saisir un mot de passe",
     },
+    min_password: {
+        en: "Minimum password length is 6 characters",
+        es: "La longitud mínima de la contraseña es de 6 caracteres",
+        it: "La lunghezza minima della password è di 6 caratteri",
+        ko: "최소 비밀번호 길이는 6자입니다",
+        fr: "La longueur minimale du mot de passe est de 6 caractères",
+    },
     // SEND EMAIL MSG
     subject_email_verification: {
         en: "Thank you for registering! Please verify your account",
@@ -49,12 +56,33 @@ const lanMsg = {
         ko: "가입해 주셔서 감사합니다! 계정을 확인해주세요",
         fr: "Merci de vous être inscrit ! Veuillez vérifier votre compte",
     },
+    body_email_verification_title: {
+        en: "Almost Done!",
+        es: "¡Casi Listo!",
+        it: "Quasi fatto!",
+        ko: "거의 끝났어요!",
+        fr: "Presque fini !",
+    },
     body_email_verification: {
-        en: "Please click the link below to complete your account verification",
-        es: "Por favor, haz clic en el enlace de abajo para completar la verificación de tu cuenta",
-        it: "Si prega di cliccare sul link sottostante per completare la verifica dell'account",
-        ko: "계정 확인을 완료하려면 아래 링크를 클릭하세요",
-        fr: "Veuillez cliquer sur le lien ci-dessous pour finaliser la vérification de votre compte",
+        en: "Please click the link below to complete your account verification:",
+        es: "Por favor, haz clic en el enlace de abajo para completar la verificación de tu cuenta:",
+        it: "Si prega di cliccare sul link sottostante per completare la verifica dell'account:",
+        ko: "계정 확인을 완료하려면 아래 링크를 클릭하세요:",
+        fr: "Veuillez cliquer sur le lien ci-dessous pour finaliser la vérification de votre compte:",
+    },
+    body_email_verification_footer: {
+        en: "On behalf of the Fableep team, thank you for choosing us. Enjoy the fabulous stories!",
+        es: "En nombre del equipo de Fableep, gracias por elegirnos. ¡Disfruta de las fabulosas historias!",
+        it: "A nome del team di Fableep, grazie per averci scelto. Buona lettura delle favolose storie!",
+        ko: "파블립 팀 대신, 저희를 선택해 주셔서 감사합니다. 멋진 이야기를 즐겨보세요!",
+        fr: "Au nom de l'équipe Fableep, merci de nous avoir choisis. Profitez des histoires fabuleuses !",
+    },
+    button_email_verify: {
+        en: "Verify Account",
+        es: "Verificar Cuenta",
+        it: "Verifica Account",
+        ko: "계정 확인",
+        fr: "Vérifier le compte",
     },
     email_not_sent: {
         en: "Imposible to send the verification email, please try again or use a different email",

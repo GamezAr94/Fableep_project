@@ -8,11 +8,11 @@ const getMessage = require("../lib/getLanguage");
 /**
  * Function to create and send the email to verify the user's account
  * @param {string} to the email address to send the email
- * @param {string} subject the msg code to get the subject message
- * @param {string} content the msg code to get the content message
+ * @param {string} verification the verification code
+ * @param {string} language the language to display the messages
  * @returns
  */
-const emailHandler = async (to, subject, content) => {
+const emailHandler = async (to, verification, language) => {
     let response = { status: false, msg: "Not Executed" };
     let transporter = nodemailer.createTransport({
         host: config.email_host,
@@ -24,12 +24,45 @@ const emailHandler = async (to, subject, content) => {
         },
     });
 
+    // Construct the verification link
+    const verificationLink = `http://localhost:3000/dashboard/verify_account?auth_code=${verification}`;
+
+    // HTML content for the email
+    const htmlContent = `
+            <div>
+                <h1>
+                    ${getMessage("body_email_verification_title", language)}
+                </h1>
+                <p>
+                    ${getMessage("body_email_verification", language)}
+                </p>
+                <a href="${verificationLink}">
+                    ${getMessage("button_email_verify", language)}
+                </a>
+                <p>
+                    ${getMessage("body_email_verification_footer", language)}
+                </p>
+                <p>- Fableep :) </p>
+            </div>
+        `;
+
+    // Plain text content for the email
+    const textContent = `
+        ${getMessage("body_email_verification_title", language)}
+
+        ${getMessage("body_email_verification", language)}
+        ${verificationLink}
+
+        ${(getMessage("body_email_verification_footer", language))}
+        - Fableep :)
+    `;
+
     var mailOptions = {
         from: config.email_user,
         to: to,
-        subject: subject,
-        html: `<div><h1>${content}</h1></div>`,
-        text: content,
+        subject: getMessage("subject_email_verification", language),
+        //html: htmlContent,
+        text: textContent,
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -50,7 +83,6 @@ const emailHandler = async (to, subject, content) => {
  * @returns the object of errors {email, password}
  */
 const handleErrors = (err, language) => {
-    console.log(err);
     let errors = { email: "", password: "" };
     // incorrect email
     if (err.message === "Incorrect email") {
@@ -111,13 +143,14 @@ exports.postSignup = async (req, res) => {
     try {
         // create the new user
         user = await User.create({ email, password });
-        // TODO we need to create a code that we need to send in the email to verify the user's account
+
         // sent the email
         const email_status = await emailHandler(
             email,
-            getMessage("subject_email_verification", language),
-            getMessage("body_email_verification", language)
+            user.account_verification.verificationToken,
+            language
         );
+
         // create the token ONLY if the user and the email were successfull
         const token = createToken(user._id);
         return res.status(201).json({ user: user._id, jwt_token: token });
@@ -152,17 +185,17 @@ exports.postLogin = async (req, res) => {
 };
 
 // Controller to fetch all the users
-exports.authToken = (req, res) => {
-    const { name, value } = req.body;
-    if (name === "token_auth" && value) {
-        jwt.verify(value, config.jwt_secret, (err, decodedToken) => {
-            if (err) {
-                return res.status(200).json({ status: false });
-            } else {
-                return res.status(201).json({ status: true });
-            }
-        });
-        return;
+exports.authorized = (req, res) => {
+    let jwt_s = false;
+    let verify_s = false;
+    if (req.jwt_status) {
+        jwt_s = req.jwt_status;
     }
-    return res.status(201).json({ status: false });
+    if (req.verify_status) {
+        verify_s = req.jwt_status;
+    }
+    res.status(201).json({
+        jwt_status: jwt_s,
+        verify_status: verify_s,
+    });
 };

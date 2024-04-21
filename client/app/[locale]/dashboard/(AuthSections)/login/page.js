@@ -9,11 +9,14 @@ import Symbols from "@/app/components/SVGIcons/symbols";
 const i18nNamespaces = ["authenticate"];
 
 export default async function SignupPage({ params }) {
+    // TODO fix this
+    /*
     const isAuth = await authAccessRoute("token_auth");
     // redirect the user to the Dashboard if already logged in
     if (isAuth) {
         return redirect("/dashboard");
     }
+    */
     return (
         <div className={styles.main}>
             <AuthForm

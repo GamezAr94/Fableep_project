@@ -28,7 +28,7 @@ export default function ActionForm({ action, className, type, button }) {
                 }, 3000)
             );
         }
-    }, [state.id]);
+    }, [state?.id]);
     //function to refresh the email error
     function updateErrEmail() {
         setErr({ email: "", password: getErr.password });

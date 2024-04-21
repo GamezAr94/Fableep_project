@@ -8,8 +8,8 @@ import Symbols from "@/app/components/SVGIcons/symbols";
 // Languages
 const i18nNamespaces = ["authenticate"];
 
-export default async function Password({ params }) {
-    // TODO fix this
+export default async function password({ params }) {
+    //TODO fix this
     /*
     // authorize the access to the user
     const status = await authAccessRoute("token_auth", '', '');
