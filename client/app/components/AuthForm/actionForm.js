@@ -5,35 +5,46 @@ import RegisterFormSubmit from "./registerFormSubmit";
 import TextInput from "./textInput";
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
-import ToastMessage from "../ErrorElements/toastMessage";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ActionForm({ action, className, type, button }) {
+    const { t } = useTranslation();
+
     const [state, formAction] = useFormState(action, {
         email: null,
         password: null,
         id: null,
     });
-    const { t } = useTranslation();
 
-    // Functionality to refresh the errors
+    // Functionality to display the password and menu errors
     const [getErr, setErr] = useState("");
-    const [getTimeOut, setTimeOut] = useState(null);
+
+    // hook to show ONLY the server error
     useEffect(() => {
-        setErr(state);
-        if (state?.unexpected && !getTimeOut) {
-            setTimeOut(
-                setTimeout(() => {
-                    setErr("");
-                    setTimeOut(null);
-                }, 3000)
-            );
+        if (state?.unexpected) {
+            toast.error(t(state.unexpected), {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Slide,
+            });
         }
+        // we need to set the password and email in another hook because we cannot
+        // modify the values from the useFormState hook
+        setErr(state);
     }, [state?.id]);
-    //function to refresh the email error
+
+    //function to clear the email error
     function updateErrEmail() {
         setErr({ email: "", password: getErr.password });
     }
-    //function to refresh the password error
+    //function to clear the password error
     function updateErrPass() {
         setErr({ email: getErr.email, password: "" });
     }
@@ -74,11 +85,7 @@ export default function ActionForm({ action, className, type, button }) {
     }
     return (
         <>
-            {state?.unexpected ? (
-                <ToastMessage message={t(getErr.unexpected)} setErr={setErr} />
-            ) : (
-                ""
-            )}
+            <ToastContainer limit={5} />
             <form action={formAction} className={className}>
                 {inputs}
                 <div>

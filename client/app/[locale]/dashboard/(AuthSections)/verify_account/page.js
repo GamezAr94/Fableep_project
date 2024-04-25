@@ -3,30 +3,34 @@ import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 
 import { authAccessRoute, resend_verification_email } from "@/lib/actions";
+
 import Symbols from "@/app/components/SVGIcons/symbols";
+import Validate_account from "./validate_account";
 
 // Languages
 const i18nNamespaces = ["authenticate"];
 
-export default async function password({ params }) {
-    //TODO fix this
-    /*
-    // authorize the access to the user
-    const status = await authAccessRoute("token_auth", '', '');
-    console.log(status);
-    */
+export default async function Page({ params }) {
     return (
-        <div className={styles.main}>
-            <AuthForm
-                action={resend_verification_email}
-                i18n={i18nNamespaces}
-                type="verification"
-                params={params}
-            />
-            <div className={styles.splash}>
-                <Symbols type="reading-girl" size="400" />
-                <Symbols type="blob-1" size="550" className={styles.behind} />
-            </div>
-        </div>
+        <Validate_account>
+            {
+                <div className={styles.main}>
+                    <AuthForm
+                        action={resend_verification_email}
+                        i18n={i18nNamespaces}
+                        type="verification"
+                        params={params}
+                    />
+                    <div className={styles.splash}>
+                        <Symbols type="reading-girl" size="400" />
+                        <Symbols
+                            type="blob-1"
+                            size="550"
+                            className={styles.behind}
+                        />
+                    </div>
+                </div>
+            }
+        </Validate_account>
     );
 }

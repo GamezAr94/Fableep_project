@@ -230,9 +230,11 @@ function validatePassword(password) {
 // Simulate loading status for 2 seconds
 async function addTimeOut(sec = 2) {
     await new Promise((resolve) => setTimeout(resolve, sec * 1000));
+    return { isVerified: false, msg: "error validating the code" };
 }
 
-export async function resend_verification_email() {
+export async function resend_verification_email(email) {
+    // todo Modify this to receive an email instead of the JWT
     const cookie_token = cookies().get("token_auth");
     // if they dont have the cookie set then this is not the right place
     if (!cookie_token) {
@@ -259,6 +261,60 @@ export async function resend_verification_email() {
         isSent.message = "Error sending the email";
     }
 
-    console.log(isSent);
     return isSent;
+}
+
+/**
+ * this function will send the request to validate the user's account
+ * @param {string} code the auth code passed in the email confirmation
+ * @returns object with the status true if verified or false if failed and a message
+ */
+export async function verify_account(code) {
+    // if there is no code then do nothing
+    if (!code) {
+        // todo  add i18n
+        return {
+            isVerified: false,
+            msg: "Error validating your code, please click the link in your email again",
+        };
+    }
+    // get the token in case the user is already logged in and just have to authenticate
+    const cookie_token = cookies().get("token_auth");
+    // prepare the returned value
+    let isActivated = { isVerified: false, msg: "Error" };
+    try {
+        const res = await fetch(
+            `${process.env.IP}/${process.env.API}/${process.env.VERSION}/verify_email_account`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "accept-language":
+                        cookies().get("NEXT_LOCALE")?.value || "en",
+                },
+                body: JSON.stringify({ code: code, jwt: cookie_token }),
+            }
+        );
+        isActivated = await res.json();
+        // if the user was not logged in but verified the account then we have to log the user in
+        if (isActivated.isVerified && isActivated.jwt_token) {
+            cookies().set({
+                name: "token_auth",
+                value: isActivated.jwt_token,
+                secure: process.env.NODE_ENV === true,
+                httpOnly: true,
+                path: "/",
+                sameSite: "strict",
+                maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
+            });
+        }
+    } catch (error) {
+        // todo set proper message and add i18n
+        isActivated = {
+            isVerified: false,
+            msg: "Error conencting to the server, please try latter",
+        };
+    }
+    // we can return the response and handle it in the component
+    return isActivated;
 }

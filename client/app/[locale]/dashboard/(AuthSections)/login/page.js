@@ -8,8 +8,8 @@ import Symbols from "@/app/components/SVGIcons/symbols";
 // Languages
 const i18nNamespaces = ["authenticate"];
 
-export default async function SignupPage({ params }) {
-    // TODO fix this
+export default function LoginPage({ params }) {
+    //! TODO fix this
     /*
     const isAuth = await authAccessRoute("token_auth");
     // redirect the user to the Dashboard if already logged in

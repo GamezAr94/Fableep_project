@@ -11,9 +11,9 @@ const authRoutes = require("./routes/authRoutes");
 
 // enabling CORS for specific origins only
 let corsOptions = {
-    origin : ['http://localhost:3000'],
+    origin: ["http://localhost:3000"],
     credentials: true,
-}
+};
 // Middleware
 app.use(express.json());
 app.use(cookieParser());

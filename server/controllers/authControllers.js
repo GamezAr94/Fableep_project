@@ -218,6 +218,7 @@ exports.sendVerificationEmail = async (req, res) => {
         });
     }
     try {
+        // todo update this to receive the email instead of trying to find it by the ID
         const user = await User.findById(userId);
         // if we dont have the user with that ID then we shouldnt be here
         if (!user) {
@@ -269,6 +270,95 @@ exports.sendVerificationEmail = async (req, res) => {
             isSent: false,
             message: "error sending the email",
             remaining: null,
+        });
+    }
+};
+
+exports.verifyingEmailAccount = async (req, res) => {
+    //console.log(req.body);
+
+    // todo add i18n label
+    if (!req.body.code) {
+        return res
+            .status(401)
+            .json({ isVerified: false, msg: "no valid code was passed" });
+    }
+    try {
+        let user;
+        let token = null;
+        // If both code and jwt are provided, search by both
+        if (req.body.jwt && req.body.jwt.value) {
+            const { name, value } = req.body.jwt;
+            let decoded = "";
+
+            // decodify the JWT
+            jwt.verify(value, config.jwt_secret, (err, decodedToken) => {
+                if (err) {
+                    // TODO implement the i18n
+                    return res.status(500).json({
+                        isVerified: false,
+                        msg: "Error verifying email account",
+                    });
+                } else {
+                    decoded = decodedToken;
+                }
+            });
+
+            // search by id, if is verified and the verification token
+            user = await User.findOne({
+                _id: decoded.id,
+                "account_verification.isVerified": false,
+                "account_verification.verificationToken": req.body.code,
+            });
+
+            // TODO implement the i18n
+            // Check if user is found
+            if (!user) {
+                return res.status(404).json({
+                    isVerified: false,
+                    msg: "User not found please try sign in again",
+                });
+            }
+        } else {
+            // If only code is provided, search by verificationToken only
+            user = await User.findOne({
+                "account_verification.isVerified": false,
+                "account_verification.verificationToken": req.body.code,
+            });
+
+            // Check if user is found
+            if (!user) {
+                // TODO implement the i18n
+                return res.status(404).json({
+                    isVerified: false,
+                    msg: "User not found please try sign in again",
+                });
+            }
+
+            // create a token so that we can login the user ONLY if there is a user
+            token = createToken(user._id);
+        }
+
+        // Update the user document to mark as verified and remove verificationToken
+        await User.findOneAndUpdate(
+            { _id: user._id },
+            {
+                $set: {
+                    "account_verification.isVerified": true,
+                    "account_verification.verificationToken": null,
+                },
+            }
+        );
+
+        // return the success, no message required and a new token if any to login the user
+        return res
+            .status(200)
+            .json({ isVerified: true, msg: "", jwt_token: token });
+    } catch (error) {
+        return res.status(500).json({
+            isVerified: false,
+            // TODO implement the i18n
+            msg: "Error verifying email account",
         });
     }
 };

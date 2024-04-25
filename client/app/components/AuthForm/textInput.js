@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 import EyeIcon from "../SVGIcons/eye";
 import styles from "./textInput.module.css";
 
-export default function TextInput({ type, name, placeholder, error, updateError, label }) {
+export default function TextInput({
+    type,
+    name,
+    placeholder,
+    error,
+    updateError,
+    label,
+}) {
     const [isShowPass, setShowPass] = useState(false);
     const [getInputState, setInputState] = useState({
         icon: "",
@@ -48,11 +55,13 @@ export default function TextInput({ type, name, placeholder, error, updateError,
         }
     }, [isShowPass]);
 
-    const isError = error ? styles.error_input : '';
+    const isError = error ? styles.error_input : "";
 
     return (
         <div>
-            <div className={`${styles.input_wrap} ${isError}`} onClick={updateError}>
+            <div
+                className={`${styles.input_wrap} ${isError}`}
+                onClick={updateError}>
                 <p>{label}</p>
                 {getInputState.icon}
                 <input

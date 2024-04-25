@@ -20,10 +20,9 @@ router.post(
 router.post("/login", usersController.postLogin);
 
 // Register a new user
-router.post(
-    "/send_verification_email",
-    middleware.jwtAuthentication,
-    usersController.sendVerificationEmail
-);
+router.post("/send_verification_email", usersController.sendVerificationEmail);
+
+// Verifying email
+router.post("/verify_email_account", usersController.verifyingEmailAccount);
 
 module.exports = router;
