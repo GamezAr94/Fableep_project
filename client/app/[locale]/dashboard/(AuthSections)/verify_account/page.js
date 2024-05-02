@@ -1,8 +1,7 @@
 import AuthForm from "@/app/components/AuthForm/authForm";
-import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 
-import { authAccessRoute, resend_verification_email } from "@/lib/actions";
+import { resend_verification_email } from "@/lib/actions";
 
 import Symbols from "@/app/components/SVGIcons/symbols";
 import Validate_account from "./validate_account";

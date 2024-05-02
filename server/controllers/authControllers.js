@@ -276,11 +276,13 @@ exports.sendVerificationEmail = async (req, res) => {
 };
 
 exports.verifyingEmailAccount = async (req, res) => {
+    const language = req.headers["accept-language"];
     // todo add i18n label
     if (!req.body.code) {
-        return res
-            .status(401)
-            .json({ isVerified: false, msg: "no valid code was passed" });
+        return res.status(401).json({
+            isVerified: false,
+            msg: getMessage("not_valid_code_passed", language),
+        });
     }
     try {
         let user;
@@ -294,10 +296,9 @@ exports.verifyingEmailAccount = async (req, res) => {
 
         // Check if user is found
         if (!user) {
-            // TODO implement the i18n
             return res.status(404).json({
                 isVerified: false,
-                msg: "User not found please try sign in again",
+                msg: getMessage("user_not_found_try_again", language),
             });
         }
 

@@ -2,6 +2,7 @@
 import { verify_account } from "@/lib/actions";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,23 +11,26 @@ export default function Validate_account({ children }) {
     const getCode = useSearchParams().get("auth_code");
     // set the result
     const [showComponent, setShowComponent] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const verifyAndRedirect = async () => {
             let loadingToastId = null;
             try {
-                loadingToastId = toast.loading("Verifying account...", {
-                    render: "verification failed",
-                    autoClose: 5000,
-                    position: "top-center",
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Slide,
-                });
+                loadingToastId = toast.loading(
+                    t("authenticate:verification_in_progress"),
+                    {
+                        autoClose: 5000,
+                        position: "top-center",
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Slide,
+                    }
+                );
                 const result = await verify_account(getCode);
                 // we only need to show the error message, if it is successfull we will redirect the user
                 if (result && result.isVerified == false) {
@@ -49,7 +53,7 @@ export default function Validate_account({ children }) {
                 }
             } catch (error) {
                 toast.update(loadingToastId, {
-                    render: error || "unexpected error found",
+                    render: t("authenticate:unexpected_server_err"),
                     type: "error",
                     isLoading: false,
                     autoClose: 5000,

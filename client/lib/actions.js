@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import initTranslations from "@/app/i18n";
 
 /**
  * function that will perform the signup process
@@ -270,6 +271,9 @@ export async function resend_verification_email(email) {
  * @returns object with the status true if verified or false if failed and a message
  */
 export async function verify_account(code) {
+    const language = cookies().get("NEXT_LOCALE")?.value || "en";
+    const i18n = ["authenticate"];
+    const { t } = await initTranslations(language, i18n);
     // prepare the returned value
     let isActivated = {
         isVerified: false,
@@ -292,8 +296,7 @@ export async function verify_account(code) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "accept-language":
-                        cookies().get("NEXT_LOCALE")?.value || "en",
+                    "accept-language": language,
                 },
                 body: JSON.stringify({ code: code }),
             }
@@ -315,7 +318,7 @@ export async function verify_account(code) {
         // todo set proper message and add i18n
         isActivated = {
             isVerified: false,
-            msg: "Error conencting to the server, please try latter",
+            msg: t("authenticate:unexpected_server_err"),
         };
     }
 

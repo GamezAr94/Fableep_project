@@ -34,6 +34,12 @@
     "empty_password": "Por favor ingrese una contraseña",
     "not_valid_password": "La contraseña es incorrecta",
     "min_password": "La longitud mínima de la contraseña es de 6 caracteres",
-    "unexpected_server_err": "Error inesperado: Por favor, inténtelo de nuevo más tarde"
+    "unexpected_server_err": "Error inesperado: Por favor, inténtelo de nuevo más tarde",
+
+    "verification_page_button": "Reenviar correo electrónico",
+    "verification_page_title": "Verifica tu correo electrónico",
+    "verification_page_desc": "Por favor, verifica tu cuenta. Revisa tu correo electrónico para el enlace de confirmación y asegúrate de que no esté en la carpeta de spam. Si no lo has recibido en 5 minutos, puedes hacer clic en el botón de abajo para reenviar el correo electrónico.",
+    "verification_in_progress": "Verificando Cuenta...",
+    "not_valid_code_passed": "No se ha proporcionado un código válido"
 
 }

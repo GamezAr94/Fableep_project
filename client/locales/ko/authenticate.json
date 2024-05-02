@@ -34,5 +34,12 @@
     "empty_password": "비밀번호를 입력하세요",
     "not_valid_password": "비밀번호가 올바르지 않습니다",
     "min_password": "최소 비밀번호 길이는 6자입니다",
-    "unexpected_server_err": "예기치 않은 오류: 나중에 다시 시도해주세요"
+    "unexpected_server_err": "예기치 않은 오류: 나중에 다시 시도해주세요",
+
+    "verification_page_button": "이메일 재전송",
+    "verification_page_title": "이메일 인증",
+    "verification_page_desc": "계정을 확인하세요. 확인 링크를 이메일에서 확인하고 스팸 편지함에 없는지 확인하세요. 5분 이내에 받지 못했다면 아래 버튼을 클릭하여 이메일을 다시 전송할 수 있습니다.",
+    "verification_in_progress": "계정 확인 중...",
+    "not_valid_code_passed": "유효하지 않은 코드가 전달되었습니다"
+
 }

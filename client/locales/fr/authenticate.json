@@ -34,5 +34,12 @@
     "empty_password": "Veuillez saisir un mot de passe",
     "not_valid_password": "Ce mot de passe est incorrect",
     "min_password": "La longueur minimale du mot de passe est de 6 caractères",
-    "unexpected_server_err": "Erreur inattendue : Veuillez réessayer plus tard"
+    "unexpected_server_err": "Erreur inattendue : Veuillez réessayer plus tard",
+
+    "verification_page_button": "Renvoyer l'email",
+    "verification_page_title": "Vérifiez votre e-mail",
+    "verification_page_desc": "Veuillez vérifier votre compte. Vérifiez votre e-mail pour le lien de confirmation et assurez-vous qu'il n'est pas dans le dossier de spam. Si vous ne l'avez pas reçu dans les 5 minutes, vous pouvez cliquer sur le bouton ci-dessous pour renvoyer l'e-mail.",
+    "verification_in_progress": "Vérification du compte en cours...",
+    "not_valid_code_passed": "Un code non valide a été transmis"
+
 }

@@ -91,6 +91,27 @@ const lanMsg = {
         ko: "계정 확인을 완료하려면 아래 링크를 클릭하세요",
         fr: "Veuillez cliquer sur le lien ci-dessous pour finaliser la vérification de votre compte",
     },
+    not_valid_code_passed: {
+        en: "Not valid code was passed",
+        es: "No se ha proporcionado un código válido",
+        it: "Il codice inserito non è valido",
+        ko: "유효하지 않은 코드가 전달되었습니다",
+        fr: "Un code non valide a été transmis",
+    },
+    user_not_found_try_again: {
+        en: "User not found please try sign in again",
+        es: "Usuario no encontrado, por favor, intente iniciar sesión nuevamente",
+        it: "Utente non trovato, si prega di provare a accedere nuovamente",
+        ko: "사용자를 찾을 수 없습니다. 다시 로그인을 시도하십시오.",
+        fr: "Utilisateur non trouvé, veuillez réessayer de vous connecter",
+    },
+    erro_verifying_email_account: {
+        en: "Error verifying email account please contact support",
+        es: "Error al verificar la cuenta de correo electrónico, por favor, póngase en contacto con soporte",
+        it: "Errore durante la verifica dell'account email, si prega di contattare il supporto",
+        ko: "이메일 계정 확인 중 오류가 발생했습니다. 지원팀에 문의하세요.",
+        fr: "Erreur lors de la vérification du compte email, veuillez contacter le support",
+    },
 };
 
 /**

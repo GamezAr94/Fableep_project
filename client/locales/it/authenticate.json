@@ -34,5 +34,12 @@
     "empty_password": "Inserisci una password",
     "not_valid_password": "La password non è corretta",
     "min_password": "La lunghezza minima della password è di 6 caratteri",
-    "unexpected_server_err": "Errore imprevisto: Riprova più tardi"
+    "unexpected_server_err": "Errore imprevisto: Riprova più tardi",
+
+    "verification_page_button": "Rispedisci email",
+    "verification_page_title": "Verifica la tua email",
+    "verification_page_desc": "Si prega di verificare il proprio account. Controlla la tua email per il link di conferma e assicurati che non sia nella cartella dello spam. Se non l'hai ricevuto entro 5 minuti, puoi fare clic sul pulsante qui sotto per rispedire l'email.",
+    "verification_in_progress": "Verifica dell'account in corso...",
+    "not_valid_code_passed": "Il codice inserito non è valido"
+
 }
