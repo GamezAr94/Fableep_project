@@ -275,21 +275,26 @@ exports.sendVerificationEmail = async (req, res) => {
     }
 };
 
+/**
+ * this function will try to find the user with the same code passed, if the user exists then we will
+ * remove the code and set validated to true in the DB
+ * @param {object} req we will get the request from the client with the information about the language, code
+ * @param {object} res we will get an object {isVerified: boolean, msg: string}
+ * @returns
+ */
 exports.verifyingEmailAccount = async (req, res) => {
     const language = req.headers["accept-language"];
-    // todo add i18n label
+    // verify that we get the code
     if (!req.body.code) {
         return res.status(401).json({
             isVerified: false,
             msg: getMessage("not_valid_code_passed", language),
         });
     }
+
     try {
-        let user;
-        let token = null;
-        // If both code and jwt are provided, search by both
-        // If only code is provided, search by verificationToken only
-        user = await User.findOne({
+        // try to find the user that is not verified and has the same code
+        const user = await User.findOne({
             "account_verification.isVerified": false,
             "account_verification.verificationToken": req.body.code,
         });
@@ -303,7 +308,7 @@ exports.verifyingEmailAccount = async (req, res) => {
         }
 
         // create a token so that we can login the user ONLY if there is a user
-        token = createToken(user._id);
+        const token = createToken(user._id);
 
         // Update the user document to mark as verified and remove verificationToken
         await User.findOneAndUpdate(
@@ -323,8 +328,7 @@ exports.verifyingEmailAccount = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             isVerified: false,
-            // TODO implement the i18n
-            msg: "Error verifying email account",
+            msg: getMessage("error_verifying_email_account", language),
         });
     }
 };

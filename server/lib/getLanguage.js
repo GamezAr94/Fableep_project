@@ -105,7 +105,7 @@ const lanMsg = {
         ko: "사용자를 찾을 수 없습니다. 다시 로그인을 시도하십시오.",
         fr: "Utilisateur non trouvé, veuillez réessayer de vous connecter",
     },
-    erro_verifying_email_account: {
+    error_verifying_email_account: {
         en: "Error verifying email account please contact support",
         es: "Error al verificar la cuenta de correo electrónico, por favor, póngase en contacto con soporte",
         it: "Errore durante la verifica dell'account email, si prega di contattare il supporto",

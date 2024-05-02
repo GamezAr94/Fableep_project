@@ -2,6 +2,7 @@ import AuthForm from "@/app/components/AuthForm/authForm";
 import styles from "./page.module.css";
 
 import Symbols from "@/app/components/SVGIcons/symbols";
+import { login } from "@/lib/actions";
 
 // Languages
 const i18nNamespaces = ["authenticate"];
