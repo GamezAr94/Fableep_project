@@ -13,8 +13,9 @@ export default function Validate_account({ children }) {
 
     useEffect(() => {
         const verifyAndRedirect = async () => {
+            let loadingToastId = null;
             try {
-                const loadingToastId = toast.loading("Verifying account...", {
+                loadingToastId = toast.loading("Verifying account...", {
                     render: "verification failed",
                     autoClose: 5000,
                     position: "top-center",
@@ -28,7 +29,7 @@ export default function Validate_account({ children }) {
                 });
                 const result = await verify_account(getCode);
                 // we only need to show the error message, if it is successfull we will redirect the user
-                if (!result?.isVerified) {
+                if (result && result.isVerified == false) {
                     setShowComponent(!result.isVerified);
                     toast.update(loadingToastId, {
                         render: result.msg || "verification failed",

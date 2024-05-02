@@ -318,7 +318,6 @@ export async function verify_account(code) {
             msg: "Error conencting to the server, please try latter",
         };
     }
-    isActivated.isVerified = true;
 
     // if verified then redirect to the dashboard
     if (isActivated.isVerified) {
