@@ -4,6 +4,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const getMessage = require("../lib/getLanguage");
+const { ObjectId } = require("mongodb");
 
 /**
  * Function to create and send the email to verify the user's account
@@ -275,8 +276,6 @@ exports.sendVerificationEmail = async (req, res) => {
 };
 
 exports.verifyingEmailAccount = async (req, res) => {
-    //console.log(req.body);
-
     // todo add i18n label
     if (!req.body.code) {
         return res
@@ -287,57 +286,23 @@ exports.verifyingEmailAccount = async (req, res) => {
         let user;
         let token = null;
         // If both code and jwt are provided, search by both
-        if (req.body.jwt && req.body.jwt.value) {
-            const { name, value } = req.body.jwt;
-            let decoded = "";
+        // If only code is provided, search by verificationToken only
+        user = await User.findOne({
+            "account_verification.isVerified": false,
+            "account_verification.verificationToken": req.body.code,
+        });
 
-            // decodify the JWT
-            jwt.verify(value, config.jwt_secret, (err, decodedToken) => {
-                if (err) {
-                    // TODO implement the i18n
-                    return res.status(500).json({
-                        isVerified: false,
-                        msg: "Error verifying email account",
-                    });
-                } else {
-                    decoded = decodedToken;
-                }
-            });
-
-            // search by id, if is verified and the verification token
-            user = await User.findOne({
-                _id: decoded.id,
-                "account_verification.isVerified": false,
-                "account_verification.verificationToken": req.body.code,
-            });
-
+        // Check if user is found
+        if (!user) {
             // TODO implement the i18n
-            // Check if user is found
-            if (!user) {
-                return res.status(404).json({
-                    isVerified: false,
-                    msg: "User not found please try sign in again",
-                });
-            }
-        } else {
-            // If only code is provided, search by verificationToken only
-            user = await User.findOne({
-                "account_verification.isVerified": false,
-                "account_verification.verificationToken": req.body.code,
+            return res.status(404).json({
+                isVerified: false,
+                msg: "User not found please try sign in again",
             });
-
-            // Check if user is found
-            if (!user) {
-                // TODO implement the i18n
-                return res.status(404).json({
-                    isVerified: false,
-                    msg: "User not found please try sign in again",
-                });
-            }
-
-            // create a token so that we can login the user ONLY if there is a user
-            token = createToken(user._id);
         }
+
+        // create a token so that we can login the user ONLY if there is a user
+        token = createToken(user._id);
 
         // Update the user document to mark as verified and remove verificationToken
         await User.findOneAndUpdate(

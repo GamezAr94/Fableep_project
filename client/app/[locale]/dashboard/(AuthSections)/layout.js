@@ -2,6 +2,7 @@ import "../../globals.css";
 import Header from "../../../components/header/header";
 import TranslationsProvider from "@/app/components/translationsProvider";
 import initTranslations from "@/app/i18n";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
     title: "Fableep",
@@ -26,6 +27,7 @@ export default async function RootLayout({ params, children }) {
                     locale={params.locale}
                     namespaces={i18nNamespaces}>
                     <Header />
+                    <ToastContainer />
                     {children}
                 </TranslationsProvider>
             </body>

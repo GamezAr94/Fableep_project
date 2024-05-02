@@ -133,7 +133,7 @@ export async function login(prevState, formData) {
     }
 
     // if we are here that means that the signup was successfully
-    redirect("/dashboard");
+    return redirect("../dashboard");
 }
 
 /**
@@ -270,19 +270,22 @@ export async function resend_verification_email(email) {
  * @returns object with the status true if verified or false if failed and a message
  */
 export async function verify_account(code) {
-    // if there is no code then do nothing
-    if (!code) {
-        // todo  add i18n
-        return {
-            isVerified: false,
-            msg: "Error validating your code, please click the link in your email again",
-        };
-    }
-    // get the token in case the user is already logged in and just have to authenticate
-    const cookie_token = cookies().get("token_auth");
     // prepare the returned value
-    let isActivated = { isVerified: false, msg: "Error" };
+    let isActivated = {
+        isVerified: false,
+        msg: "Authentication code not valid",
+    };
+
+    // verify the code
+    if (!code) {
+        return isActivated;
+    }
+
+    // remove any token in case was already logged in
+    cookies().delete("token_auth");
+
     try {
+        // if there is no code then do nothing
         const res = await fetch(
             `${process.env.IP}/${process.env.API}/${process.env.VERSION}/verify_email_account`,
             {
@@ -292,7 +295,7 @@ export async function verify_account(code) {
                     "accept-language":
                         cookies().get("NEXT_LOCALE")?.value || "en",
                 },
-                body: JSON.stringify({ code: code, jwt: cookie_token }),
+                body: JSON.stringify({ code: code }),
             }
         );
         isActivated = await res.json();
@@ -315,6 +318,13 @@ export async function verify_account(code) {
             msg: "Error conencting to the server, please try latter",
         };
     }
+    isActivated.isVerified = true;
+
+    // if verified then redirect to the dashboard
+    if (isActivated.isVerified) {
+        redirect("../dashboard");
+    }
+
     // we can return the response and handle it in the component
     return isActivated;
 }

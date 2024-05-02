@@ -5,7 +5,7 @@ import RegisterFormSubmit from "./registerFormSubmit";
 import TextInput from "./textInput";
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ActionForm({ action, className, type, button }) {
@@ -85,7 +85,6 @@ export default function ActionForm({ action, className, type, button }) {
     }
     return (
         <>
-            <ToastContainer limit={5} />
             <form action={formAction} className={className}>
                 {inputs}
                 <div>
