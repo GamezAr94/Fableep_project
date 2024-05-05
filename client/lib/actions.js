@@ -138,13 +138,20 @@ export async function login(prevState, formData) {
 }
 
 /**
- * function to authorize the access to some routes
+ * function to redirect user from public pages to the dashboard if logged in
  *
  * @param {string} token_name the name of the cookie
  * @returns boolean true if autorized false otherwise
  */
-export async function authAccessRoute(token_name) {
+export async function redirectToPrivate(token_name, redirectPath = null) {
     const cookie_token = cookies().get(token_name || "token_auth");
+    // we need the cookie value to run this code
+    if (!cookie_token?.value || cookie_token?.value.trim().length <= 0) {
+        if (redirectPath) {
+            redirect(redirectPath);
+        }
+        return;
+    }
     let isAuthorized = null;
     try {
         const res = await fetch(
@@ -163,17 +170,20 @@ export async function authAccessRoute(token_name) {
     } catch (err) {
         isAuthorized = null;
     }
-    // if the email is not verified we need to send them to the verification page
-    if (isAuthorized.verify_status === false) {
-        redirect("/dashboard/verify_account");
-    }
-    // if the jwt is not valid then we need to send them to the login page
-    if (isAuthorized.jwt_status === false) {
-        redirect("/dashboard/login");
-    }
-    // if there is any other problem then we need to redirect the user to the login page
-    if (isAuthorized === null) {
-        redirect("/dashboard/login");
+    // redirect to the dashboard if we are logged in
+    if (isAuthorized.verify_status && isAuthorized.jwt_status) {
+        // we can only redirect if the path is not set because if it is set is because
+        // we want to redirect from the dashboard
+        if (!redirectPath) {
+            // redirect from the login, signup, password to dashboard
+            redirect("../dashboard");
+        }
+    } else {
+        // if not authorized and we passed a new path then redirect to it
+        if (redirectPath) {
+            // redirect from the dashboard to a specific public page
+            redirect(redirectPath);
+        }
     }
 }
 

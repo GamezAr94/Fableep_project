@@ -1,22 +1,15 @@
 import AuthForm from "@/app/components/AuthForm/authForm";
-import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 
-import { authAccessRoute, signup } from "@/lib/actions";
+import { redirectToPrivate, signup } from "@/lib/actions";
 import Symbols from "@/app/components/SVGIcons/symbols";
 
 // Languages
 const i18nNamespaces = ["authenticate"];
 
 export default async function SignupPage({ params }) {
-    // TODO fix this
-    /*
-    const isAuth = await authAccessRoute("token_auth");
     // redirect the user to the Dashboard if already logged in
-    if (isAuth) {
-        return redirect("/dashboard");
-    }
-    */
+    await redirectToPrivate("token_auth");
 
     return (
         <div className={styles.main}>

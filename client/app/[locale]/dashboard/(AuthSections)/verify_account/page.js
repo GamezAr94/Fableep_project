@@ -10,6 +10,9 @@ import Validate_account from "./validate_account";
 const i18nNamespaces = ["authenticate"];
 
 export default async function Page({ params }) {
+    // redirect the user to the Dashboard if already logged in
+    await redirectToPrivate("token_auth");
+
     return (
         <Validate_account>
             {

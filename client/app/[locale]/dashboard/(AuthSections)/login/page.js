@@ -2,12 +2,14 @@ import AuthForm from "@/app/components/AuthForm/authForm";
 import styles from "./page.module.css";
 
 import Symbols from "@/app/components/SVGIcons/symbols";
-import { login } from "@/lib/actions";
+import { login, redirectToPrivate } from "@/lib/actions";
 
 // Languages
 const i18nNamespaces = ["authenticate"];
 
-export default function LoginPage({ params }) {
+export default async function LoginPage({ params }) {
+    // redirect the user to the Dashboard if already logged in
+    await redirectToPrivate("token_auth");
     return (
         <div className={styles.main}>
             <AuthForm

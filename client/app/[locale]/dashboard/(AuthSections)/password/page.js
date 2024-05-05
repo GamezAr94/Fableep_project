@@ -1,20 +1,17 @@
 import AuthForm from "@/app/components/AuthForm/authForm";
-import { redirect } from "next/navigation";
 import styles from "./page.module.css";
 
-import { authAccessRoute, forgot_password } from "@/lib/actions";
+import { redirectToPrivate, forgot_password } from "@/lib/actions";
 import Symbols from "@/app/components/SVGIcons/symbols";
+import { cookies } from "next/headers";
 
 // Languages
 const i18nNamespaces = ["authenticate"];
 
 export default async function Password({ params }) {
-    // TODO fix this
-    /*
-    // authorize the access to the user
-    const status = await authAccessRoute("token_auth", '', '');
-    console.log(status);
-    */
+    // redirect the user to the Dashboard if already logged in
+    await redirectToPrivate("token_auth");
+
     return (
         <div className={styles.main}>
             <AuthForm
