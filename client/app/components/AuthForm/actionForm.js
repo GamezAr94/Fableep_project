@@ -23,6 +23,7 @@ export default function ActionForm({ action, className, type, button }) {
     // hook to show ONLY the server error
     useEffect(() => {
         if (state?.unexpected) {
+            // show any error created by any problem of validation
             toast.error(t(state.unexpected), {
                 position: "top-center",
                 autoClose: 5000,
@@ -34,6 +35,33 @@ export default function ActionForm({ action, className, type, button }) {
                 theme: "light",
                 transition: Slide,
             });
+        } else if (state?.message) {
+            // show the message for the verification email
+            if (state.isSent) {
+                toast.success(state.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Slide,
+                });
+            } else {
+                toast.error(state.message, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Slide,
+                });
+            }
         }
         // we need to set the password and email in another hook because we cannot
         // modify the values from the useFormState hook
@@ -42,11 +70,11 @@ export default function ActionForm({ action, className, type, button }) {
 
     //function to clear the email error
     function updateErrEmail() {
-        setErr({ email: "", password: getErr.password });
+        setErr({ email: "", password: getErr?.password });
     }
     //function to clear the password error
     function updateErrPass() {
-        setErr({ email: getErr.email, password: "" });
+        setErr({ email: getErr?.email, password: "" });
     }
 
     let inputs = (
@@ -81,7 +109,16 @@ export default function ActionForm({ action, className, type, button }) {
             />
         );
     } else if (type === "verification") {
-        inputs = "";
+        inputs = (
+            <TextInput
+                type="text"
+                label={t("authenticate:email")}
+                name="email"
+                error={getErr?.email ? `${t(getErr.email)}` : ""}
+                updateError={updateErrEmail}
+                placeholder={t("authenticate:enter_email")}
+            />
+        );
     }
     return (
         <>

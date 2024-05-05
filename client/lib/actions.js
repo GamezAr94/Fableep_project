@@ -234,15 +234,15 @@ async function addTimeOut(sec = 2) {
     return { isVerified: false, msg: "error validating the code" };
 }
 
-export async function resend_verification_email(email) {
-    // todo Modify this to receive an email instead of the JWT
-    const cookie_token = cookies().get("token_auth");
-    // if they dont have the cookie set then this is not the right place
-    if (!cookie_token) {
-        redirect("/dashboard/login");
+export async function resend_verification_email(prevState, formData) {
+    // now we can re send the email
+    const email_string = formData.get("email");
+    if (email_string.trim() <= 0) {
+        return { email: "authenticate:empty_email", id: Math.random() };
+    } else if (!validateEmail(email_string)) {
+        return { email: "authenticate:not_valid_email", id: Math.random() };
     }
 
-    // now we can re send the email
     let isSent = { emailed: false, message: "no sent", id: 0 };
     try {
         const res = await fetch(
@@ -254,7 +254,7 @@ export async function resend_verification_email(email) {
                     "accept-language":
                         cookies().get("NEXT_LOCALE")?.value || "en",
                 },
-                body: JSON.stringify(cookie_token),
+                body: JSON.stringify({ email: email_string }),
             }
         );
         isSent = await res.json();
@@ -262,6 +262,7 @@ export async function resend_verification_email(email) {
         isSent.message = "Error sending the email";
     }
 
+    isSent.id = Math.random();
     return isSent;
 }
 

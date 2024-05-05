@@ -112,6 +112,23 @@ const lanMsg = {
         ko: "이메일 계정 확인 중 오류가 발생했습니다. 지원팀에 문의하세요.",
         fr: "Erreur lors de la vérification du compte email, veuillez contacter le support",
     },
+    verification_email_sent: {
+        en: "Verification email sent",
+        es: "Correo electrónico de verificación enviado",
+        it: "Email di verifica inviata",
+        ko: "인증 이메일이 전송되었습니다",
+        fr: "Email de vérification envoyé",
+    },
+    remaining_time_to_resend: {
+        en: (minutes) => `Wait ${minutes} minutes before sending another email`,
+        es: (minutes) =>
+            `Espere ${minutes} minutos antes de enviar otro correo electrónico`,
+        it: (minutes) =>
+            `Attendere ${minutes} minuti prima di inviare un altro email`,
+        ko: (minutes) => `다른 이메일을 보내기 전에 ${minutes} 분을 기다리세요`,
+        fr: (minutes) =>
+            `Attendez ${minutes} minutes avant d'envoyer un autre e-mail`,
+    },
 };
 
 /**
@@ -120,14 +137,20 @@ const lanMsg = {
  * @param {string} lan the language to find
  * @returns plain error message if the message doesnt exist or the error in that language
  */
-const getMessage = (code, lan) => {
+const getMessage = (code, lan, dynamicValue = null) => {
     if (code == "") {
         return "code not valid";
     }
     if (lan == "") {
         return "language not valid";
     }
-    if (!lanMsg[code] || !lanMsg[code][lan]) {
+    if (!lanMsg[code]) {
+        return "not existing msg";
+    }
+    if (typeof lanMsg[code][lan] === "function") {
+        return lanMsg[code][lan](dynamicValue);
+    }
+    if (!lanMsg[code][lan]) {
         return "not existing msg";
     }
     return lanMsg[code][lan];

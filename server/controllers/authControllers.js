@@ -4,7 +4,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const getMessage = require("../lib/getLanguage");
-const { ObjectId } = require("mongodb");
+const { isEmail } = require("validator");
 
 /**
  * Function to create and send the email to verify the user's account
@@ -209,23 +209,22 @@ exports.authorized = (req, res) => {
  */
 exports.sendVerificationEmail = async (req, res) => {
     const language = req.headers["accept-language"];
-    const decodedToken = req.decoded_token;
-    const userId = decodedToken.id;
-    if (!decodedToken || !userId) {
+    const email = req.body.email;
+    if (!email && !isEmail(email)) {
         res.status(200).json({
             isSent: false,
-            message: "error sending the email",
+            message: getMessage("not_valid_email", language),
             remaining: null,
         });
     }
     try {
-        // todo update this to receive the email instead of trying to find it by the ID
-        const user = await User.findById(userId);
+        const user = await User.findOne({ email });
         // if we dont have the user with that ID then we shouldnt be here
         if (!user) {
-            res.status(401).json({
+            return res.status(401).json({
                 isSent: false,
-                message: "error sending the email",
+                message: "error finding the user",
+                message: getMessage("user_not_found_try_again", language),
                 remaining: null,
             });
         }
@@ -242,10 +241,15 @@ exports.sendVerificationEmail = async (req, res) => {
         const timeDifferenceMinutes = Math.floor(timeDifference / (1000 * 60));
 
         if (timeDifferenceMinutes < 5) {
+            const time_remaining = 5 - timeDifferenceMinutes;
             // returning the remaining time in milliseconds
             return res.status(401).json({
                 isSent: false,
-                message: "wait 5 minutes before sending another email",
+                message: getMessage(
+                    "remaining_time_to_resend",
+                    language,
+                    time_remaining
+                ),
                 remaining: timeDifference,
             });
         }
@@ -263,13 +267,13 @@ exports.sendVerificationEmail = async (req, res) => {
 
         return res.status(200).json({
             isSent: true,
-            message: "email sent successfully",
+            message: getMessage("verification_email_sent", language),
             remaining: 0,
         });
     } catch (error) {
         return res.status(401).json({
-            isSent: false,
-            message: "error sending the email",
+            isSent: femail_not_sentalse,
+            message: getMessage("email_not_sent", language),
             remaining: null,
         });
     }
