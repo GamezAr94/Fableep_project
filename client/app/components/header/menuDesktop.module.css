@@ -1,0 +1,26 @@
+.container_menu {
+    display: none;
+    height: 60px;
+    max-width: 1000px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.7rem;
+    gap: 50px;
+}
+.container_menu > div {
+    display: flex;
+    gap: 40px;
+}
+.division {
+    background-color: rgba(var(--subtle-dividers-details), 1);
+    height: 70%;
+    width: 2px;
+}
+.action_btns a {
+    padding: 8px 19px;
+}
+@media (min-width: 1250px) {
+    .container_menu {
+        display: flex;
+    }
+}

@@ -4,7 +4,8 @@
     position: sticky;
     background-color: var(--main-background-color);
     display: flex;
-    width: 100vw;
+    width: 97vw;
+    margin: 0 auto;
     justify-content: center;
     align-items: center;
     min-height: 60px;
@@ -35,4 +36,9 @@
 .logo_section img {
     width: 47px;
     height: 47px;
+}
+@media (min-width: 1250px) {
+    .header {
+        padding-top: 15px;
+    }
 }

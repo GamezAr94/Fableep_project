@@ -25,7 +25,7 @@ export default async function RootLayout({ params, children }) {
                     resources={resources}
                     locale={params.locale}
                     namespaces={i18nNamespaces}>
-                    <Header menuType={"public"} />
+                    <Header menuType={"public"} params={params} />
                 </TranslationsProvider>
                 {children}
             </body>

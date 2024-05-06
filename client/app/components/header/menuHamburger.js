@@ -50,7 +50,7 @@ export default function MenuHamburger({ isAuthorized }) {
                         href="/dashboard"
                         onClick={toggleMenu}
                         isLogin="false">
-                        Your Account
+                        {t("publicMenu:my_account")}
                     </LoginButton>
                 </li>
             </ul>
