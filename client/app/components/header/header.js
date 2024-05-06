@@ -5,12 +5,14 @@ import logoImg from "@/public/fableep_logo_compress.png";
 
 import styles from "./header.module.css";
 import Link from "next/link";
+import { isAuthorizedToAccess } from "@/lib/actions";
 
-export default function Header({ menuType }) {
+export default async function Header({ menuType }) {
+    const isAuthorized = await isAuthorizedToAccess();
     let menu = "";
     let logo = "";
     if (menuType === "public") {
-        menu = <MenuHamburger />;
+        menu = <MenuHamburger isAuthorized={isAuthorized} />;
         logo = (
             <Link href="/" className={styles.logo_section}>
                 <Image src={logoImg} alt="this is the logo of the app" />

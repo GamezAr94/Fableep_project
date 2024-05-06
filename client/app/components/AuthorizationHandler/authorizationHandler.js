@@ -8,7 +8,7 @@ export default async function AuthorizationHandler({
     isType,
     route,
 }) {
-    const isAuth = await isAuthorizedToAccess("token_auth");
+    const isAuth = await isAuthorizedToAccess();
 
     // if it is private we want to check that the jwt and status are true
     if (isType == "private") {

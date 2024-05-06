@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSelector from "./languageSelector";
 import Symbols from "../SVGIcons/symbols";
 
-export default function MenuHamburger() {
+export default function MenuHamburger({ isAuthorized }) {
     const { t } = useTranslation();
     const [isClosed, setIsClosed] = useState(true);
     const [isSubMenuLangClosed, setSubMenuLangClosed] = useState(true);
@@ -17,6 +17,44 @@ export default function MenuHamburger() {
     }
     function showSubMenu() {
         setSubMenuLangClosed(!isSubMenuLangClosed);
+    }
+
+    // by default we will show the login and signup buttons
+    let action_btn = (
+        <ul className={styles.signBtns}>
+            <li>
+                <LoginButton
+                    onClick={toggleMenu}
+                    href="/dashboard/login"
+                    isLogin="true">
+                    {t("publicMenu:login")}
+                </LoginButton>
+            </li>
+            <li>
+                <LoginButton
+                    href="/dashboard/signup"
+                    onClick={toggleMenu}
+                    isLogin="false">
+                    {t("publicMenu:start_for_free")}
+                </LoginButton>
+            </li>
+        </ul>
+    );
+    // but if the user is active we can show the button to access to their account
+    // TODO we need to implement the i18n
+    if (isAuthorized.jwt_status && isAuthorized.verify_status) {
+        action_btn = (
+            <ul className={styles.signBtns}>
+                <li>
+                    <LoginButton
+                        href="/dashboard"
+                        onClick={toggleMenu}
+                        isLogin="false">
+                        Your Account
+                    </LoginButton>
+                </li>
+            </ul>
+        );
     }
 
     return (
@@ -82,24 +120,7 @@ export default function MenuHamburger() {
                             </LanguageSelector>
                         </ul>
                         <hr></hr>
-                        <ul className={styles.signBtns}>
-                            <li>
-                                <LoginButton
-                                    onClick={toggleMenu}
-                                    href="/dashboard/login"
-                                    isLogin="true">
-                                    {t("publicMenu:login")}
-                                </LoginButton>
-                            </li>
-                            <li>
-                                <LoginButton
-                                    href="/dashboard/signup"
-                                    onClick={toggleMenu}
-                                    isLogin="false">
-                                    {t("publicMenu:start_for_free")}
-                                </LoginButton>
-                            </li>
-                        </ul>
+                        {action_btn}
                     </ul>
                 </nav>
             </div>

@@ -140,12 +140,11 @@ export async function login(prevState, formData) {
 /**
  * function to redirect user from public pages to the dashboard if logged in
  *
- * @param {string} token_name the name of the cookie
  * @returns boolean true if autorized false otherwise
  */
-export async function isAuthorizedToAccess(token_name) {
+export async function isAuthorizedToAccess() {
     let isAuthorized = { verify_status: false, isAuthorized: false };
-    const cookie_token = cookies().get(token_name || "token_auth");
+    const cookie_token = cookies().get("token_auth");
 
     // we need the cookie value to run this code
     if (!cookie_token?.value || cookie_token?.value.trim().length <= 0) {
