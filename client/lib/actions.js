@@ -143,16 +143,15 @@ export async function login(prevState, formData) {
  * @param {string} token_name the name of the cookie
  * @returns boolean true if autorized false otherwise
  */
-export async function redirectToPrivate(token_name, redirectPath = null) {
+export async function isAuthorizedToAccess(token_name) {
+    let isAuthorized = { verify_status: false, isAuthorized: false };
     const cookie_token = cookies().get(token_name || "token_auth");
+
     // we need the cookie value to run this code
     if (!cookie_token?.value || cookie_token?.value.trim().length <= 0) {
-        if (redirectPath) {
-            redirect(redirectPath);
-        }
-        return;
+        return isAuthorized;
     }
-    let isAuthorized = null;
+
     try {
         const res = await fetch(
             `${process.env.IP}/${process.env.API}/${process.env.VERSION}/auth-token`,
@@ -170,21 +169,7 @@ export async function redirectToPrivate(token_name, redirectPath = null) {
     } catch (err) {
         isAuthorized = null;
     }
-    // redirect to the dashboard if we are logged in
-    if (isAuthorized.verify_status && isAuthorized.jwt_status) {
-        // we can only redirect if the path is not set because if it is set is because
-        // we want to redirect from the dashboard
-        if (!redirectPath) {
-            // redirect from the login, signup, password to dashboard
-            redirect("../dashboard");
-        }
-    } else {
-        // if not authorized and we passed a new path then redirect to it
-        if (redirectPath) {
-            // redirect from the dashboard to a specific public page
-            redirect(redirectPath);
-        }
-    }
+    return isAuthorized;
 }
 
 // TODO add this functionality for the password page

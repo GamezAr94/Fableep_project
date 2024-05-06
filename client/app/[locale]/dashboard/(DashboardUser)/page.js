@@ -1,7 +1,9 @@
-import { redirectToPrivate } from "@/lib/actions";
+import AuthorizationHandler from "@/app/components/AuthorizationHandler/authorizationHandler";
 
 export default async function Page() {
-    // redirect the user to the Dashboard if already logged in
-    await redirectToPrivate("token_auth", "/dashboard/login");
-    return <div>Welcome back! </div>;
+    return (
+        <AuthorizationHandler isType="private" route="../dashboard/login">
+            <div>Welcome back! </div>
+        </AuthorizationHandler>
+    );
 }
