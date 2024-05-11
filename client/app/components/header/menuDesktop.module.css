@@ -6,10 +6,15 @@
     align-items: center;
     font-size: 1.7rem;
     gap: 50px;
+    margin-right: 25px;
 }
 .container_menu > div {
     display: flex;
     gap: 40px;
+}
+.container_menu,
+.middle_section a {
+    color: var(--mild-font-color);
 }
 .division {
     background-color: rgba(var(--subtle-dividers-details), 1);

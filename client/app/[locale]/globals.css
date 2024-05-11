@@ -50,7 +50,6 @@ html {
     --light-font-color: #AFC4DC;
     --mild-font-color: #7C7C7C;
     --darker-font-color: #515253;
-    --subtle-dividers-details: #f2f2f293;
     --subtle-dividers-details: 220, 220, 220;
     --section-background-color: #F8F8F8;
     --main-background-color: #fff;
@@ -67,6 +66,9 @@ html {
     overflow-x: hidden;
 }
 
+.Toastify__toast-body {
+    font-size: 1.2rem;
+}
 html,
 body {
     /* general styles */

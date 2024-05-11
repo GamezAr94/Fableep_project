@@ -12,6 +12,7 @@
 }
 .loginBtn {
     background-color: var(--main-background-color);
+    color: var(--primary-color);
 }
 .loginBtn:hover {
     background-color: var(--section-background-color);

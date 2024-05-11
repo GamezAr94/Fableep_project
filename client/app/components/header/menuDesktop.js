@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import LoginButton from "../inputs/loginButton";
 import styles from "./menuDesktop.module.css";
 import Link from "next/link";
+import DropdownMenu from "./dropdownMenu";
+import LanguageSelector from "./languageSelector";
 
 export default function MenuDesktop({ isAuthorized, params }) {
     const { t } = useTranslation();
@@ -26,13 +28,40 @@ export default function MenuDesktop({ isAuthorized, params }) {
             </LoginButton>
         );
     }
+    const lang_options = (
+        <>
+            <LanguageSelector language="en">
+                {t("publicMenu:en")}
+            </LanguageSelector>
+            <LanguageSelector language="es">
+                {t("publicMenu:es")}
+            </LanguageSelector>
+            <LanguageSelector language="it">
+                {t("publicMenu:it")}
+            </LanguageSelector>
+            <LanguageSelector language="fr">
+                {t("publicMenu:fr")}
+            </LanguageSelector>
+            <LanguageSelector language="ko">
+                {t("publicMenu:ko")}
+            </LanguageSelector>
+        </>
+    );
+    // TODO set the correct elements in the resources dropdown
     return (
         <div className={styles.container_menu}>
-            <div>{params.locale}</div>
+            <DropdownMenu label={params.locale} component={lang_options} />
             <div className={styles.division}></div>
-            <div>
+            <div className={styles.middle_section}>
                 <Link href="/">{t("publicMenu:pricing")}</Link>
-                <div>{t("publicMenu:resources")}</div>
+                <DropdownMenu
+                    label={t("publicMenu:resources")}
+                    items={[
+                        { label: "Home", url: "/" },
+                        { label: "About Us", url: "/about" },
+                        { label: "Contact", url: "/contact" },
+                    ]}
+                />
             </div>
             <div className={styles.division}></div>
             <div className={styles.action_btns}>{action_btn}</div>

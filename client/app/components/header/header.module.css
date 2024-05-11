@@ -4,9 +4,8 @@
     position: sticky;
     background-color: var(--main-background-color);
     display: flex;
-    width: 97vw;
+    width: 100vw;
     margin: 0 auto;
-    justify-content: center;
     align-items: center;
     min-height: 60px;
     z-index: 100;
@@ -40,5 +39,7 @@
 @media (min-width: 1250px) {
     .header {
         padding-top: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(var(--subtle-dividers-details), .1);
     }
 }
