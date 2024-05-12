@@ -13,9 +13,9 @@ export const viewport = {
     themeColor: "#D18255",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ params, children }) {
     return (
-        <html lang="en">
+        <html lang={params.locale}>
             <body>
                 <Header menuType={"dashboard"} />
                 {children}

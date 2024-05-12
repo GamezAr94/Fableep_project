@@ -20,7 +20,7 @@ const i18nNamespaces = ["authenticate"];
 export default async function RootLayout({ params, children }) {
     const { resources } = await initTranslations(params.locale, i18nNamespaces);
     return (
-        <html lang="en">
+        <html lang={params.locale}>
             <body>
                 <TranslationsProvider
                     resources={resources}

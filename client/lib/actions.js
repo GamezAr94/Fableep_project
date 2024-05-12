@@ -33,7 +33,7 @@ export async function signup(prevState, formData) {
                 headers: {
                     "Content-Type": "application/json",
                     "accept-language":
-                        cookies().get("NEXT_LOCALE")?.value || "en",
+                        cookies().get("NEXT_LOCALE")?.value || process.env.DEFAULT_LOCALE,
                 },
                 body: JSON.stringify(rawData),
             }
@@ -102,7 +102,7 @@ export async function login(prevState, formData) {
                 headers: {
                     "Content-Type": "application/json",
                     "accept-language":
-                        cookies().get("NEXT_LOCALE")?.value || "en",
+                        cookies().get("NEXT_LOCALE")?.value || process.env.DEFAULT_LOCALE,
                 },
                 body: JSON.stringify(rawData),
             }
@@ -159,7 +159,7 @@ export async function isAuthorizedToAccess() {
                 headers: {
                     "Content-Type": "application/json",
                     "accept-language":
-                        cookies().get("NEXT_LOCALE")?.value || "en",
+                        cookies().get("NEXT_LOCALE")?.value || process.env.DEFAULT_LOCALE,
                 },
                 body: JSON.stringify(cookie_token),
             }
@@ -167,6 +167,9 @@ export async function isAuthorizedToAccess() {
         isAuthorized = await res.json();
     } catch (err) {
         isAuthorized = null;
+    }
+    if (!isAuthorized) {
+        return { verify_status: false, isAuthorized: false };
     }
     return isAuthorized;
 }
@@ -246,7 +249,7 @@ export async function resend_verification_email(prevState, formData) {
                 headers: {
                     "Content-Type": "application/json",
                     "accept-language":
-                        cookies().get("NEXT_LOCALE")?.value || "en",
+                        cookies().get("NEXT_LOCALE")?.value || process.env.DEFAULT_LOCALE,
                 },
                 body: JSON.stringify({ email: email_string }),
             }

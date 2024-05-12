@@ -4,7 +4,11 @@ import i18nConfig from "./i18nConfig";
 import { isAuthorizedToAccess } from "./lib/actions";
 
 export async function middleware(request) {
-    const { pathname } = request.nextUrl;
+    // Get the pathname from request.nextUrl
+    const pathnameOrig = request.nextUrl.pathname;
+
+    // remove any null value from the URL
+    const pathname = pathnameOrig.replace(/\/null\//g, "/");
 
     // 1. Check Authentication
     const isAuthenticated = await isAuthorizedToAccess();
@@ -38,7 +42,11 @@ export async function middleware(request) {
         }
     } else {
         // check if the jwt and status are true for the private routes if not then redirect to the login page
-        if (!isAuthenticated.jwt_status || !isAuthenticated.verify_status) {
+        if (
+            !isAuthenticated ||
+            !isAuthenticated.jwt_status ||
+            !isAuthenticated.verify_status
+        ) {
             return NextResponse.redirect(
                 new URL(`/${locale}/dashboard/login`, request.url)
             );
