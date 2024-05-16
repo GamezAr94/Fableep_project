@@ -1,0 +1,38 @@
+.phone_container {
+    flex-basis: 10%;
+    position: absolute;
+    margin: 0 auto;
+    height: 370px;
+    min-height: 320px;
+    top: 350px;
+    top: max(380px, min(430px,(35dvh)));
+    left: 0;
+    right: 0;
+    width: 250px;
+    background-color: pink;
+}
+@media (min-width: 900px) {
+    .phone_container {
+        width: 280px;
+        height: 50vh;
+        height: 50dvh;
+        max-height: 600px;
+        min-height: 450px;
+        bottom: 0px;
+        top: max(250px, min(430px,(35dvh)));
+        margin: 0 auto;
+        left: unset;
+        right: 50px;
+    }
+}
+@media (min-width: 1250px) {
+    .phone_container {
+        position: static;
+        height: unset;
+        min-height: unset;
+        order: 2;
+        max-height: unset;
+        height: 50%;
+        flex-basis: 20%;
+    }
+}

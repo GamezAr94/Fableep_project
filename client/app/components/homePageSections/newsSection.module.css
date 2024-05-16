@@ -1,0 +1,16 @@
+.news_container {
+    background-color: purple;
+    flex-basis: 50vh;
+    flex-basis: 50dvh;
+}
+@media (min-width: 1250px) {
+    .news_container {
+        display: block;
+        order: 4;
+        background-color: purple;
+        flex-basis: 20%;
+        height: 50%;
+        min-height: 300px;
+        max-height: unset;
+    }
+}
