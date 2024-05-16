@@ -1,3 +1,4 @@
+import LoginButton from "../inputs/loginButton";
 import styles from "./mainDescription.module.css";
 
 export default function MainDescription() {
@@ -12,7 +13,9 @@ export default function MainDescription() {
                     create good habits and spend quality time with your loved
                     ones.
                 </h3>
-                <div>desc</div>
+                <LoginButton href="dashboard/signup" isLogin="false">
+                    Try For Free
+                </LoginButton>
             </main>
         </div>
     );

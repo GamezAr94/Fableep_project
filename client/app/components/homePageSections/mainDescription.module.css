@@ -1,7 +1,6 @@
 
 .description_section { 
     flex-basis: 66dvh;
-    background-color: orange!important;
     display: flex;
     min-height: 500px;
     max-height: 500px;
@@ -43,6 +42,12 @@
     max-width: 250px;
     margin: 0 auto;
     font-family: 'readXLightFont';
+    display: none;
+}
+.description_section main a {
+    margin: 30px auto 0px auto;
+    padding: 10px 15px;
+    width: 150px;
 }
 
 @media (min-width: 900px) {
@@ -53,7 +58,7 @@
         max-height: 900px;
     }
     .description_section main {
-        min-width: 580px;
+        min-width: 700px;
     }
     .header_container { 
         display: flex;
@@ -61,16 +66,25 @@
         gap: clamp(0px, 1.5vw, 30px);
     }
     .description_section main h2 {
-        font-size: clamp(3.4rem, 3vw, 3.7rem);
+        font-size: clamp(3.4rem, 4vw, 4.2rem);
     }
     .description_section main h3 {
+        display: flex;
         font-size: 1.9rem;
         line-height: 25px;
         letter-spacing: 1px;
         max-width: 330px;
     }
+    .description_section main a {
+        margin-top: 0px;
+    }
 }
 @media (min-width: 1250px) {
+    .description_section main h3 {
+        font-size: 1.8rem;
+        width: 80%;
+        max-width: 500px;
+    }
     .description_section { 
         order: 1;
         height: 50%;
