@@ -4,35 +4,65 @@
     margin: 0 auto;
     height: 370px;
     min-height: 320px;
-    top: 350px;
-    top: max(380px, min(430px,(35dvh)));
+    top: max(410px, min(430px,(40dvh)));
     left: 0;
     right: 0;
     width: 250px;
+    background-color: #fff;
+    border-radius: 15px 15px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.phone_img {
     background-color: pink;
+    border-radius: 15px 15px 0px 0px;
+    height: 99%; 
+    width: 97.6%;
 }
 @media (min-width: 900px) {
     .phone_container {
+        align-items: center;
         width: 280px;
-        height: 50vh;
-        height: 50dvh;
-        max-height: 600px;
+        height: 53vh;
+        height: 53dvh;
+        max-height: 630px;
         min-height: 450px;
         bottom: 0px;
         top: max(250px, min(430px,(35dvh)));
         margin: 0 auto;
         left: unset;
         right: 50px;
+        border-radius: 15px;
+    }
+    .phone_img {
+        border-radius: 15px;
+        height: 98%;
     }
 }
 @media (min-width: 1250px) {
     .phone_container {
-        position: static;
+        position: relative;
+        top: 0px;
+        left: 0px;
         height: unset;
         min-height: unset;
         order: 2;
         max-height: unset;
         height: 50%;
         flex-basis: 20%;
+        border-radius: 0px;
+    }
+    .phone_img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 60vh;
+        height: 60dvh;
+        max-height: 600px;
+        left: 0px;
+        right: 0px;
+        margin: 0 auto;
+        max-width: 280px;
     }
 }

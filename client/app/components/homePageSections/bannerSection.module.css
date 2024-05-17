@@ -1,7 +1,7 @@
 .imagine_section {
     flex-basis: 27dvh;
     background-color: red;
-    max-height: 300px;
+    max-height: 250px;
     min-height: 250px;
 }
 .image_banner {

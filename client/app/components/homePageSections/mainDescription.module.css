@@ -1,14 +1,14 @@
 
 .description_section { 
     flex-basis: 66dvh;
+    background-color: var(--main-background-color);
     display: flex;
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 530px;
+    max-height: 530px;
     justify-content: center;
 }
 .description_section main {
     margin-top: clamp(35px, 10vw, 60px);
-    background-color: #fff;
     width: 65%;
     min-width: 320px;
     max-width: 440px;
@@ -42,10 +42,9 @@
     max-width: 250px;
     margin: 0 auto;
     font-family: 'readXLightFont';
-    display: none;
 }
 .description_section main a {
-    margin: 30px auto 0px auto;
+    margin: 22px auto 0px auto;
     padding: 10px 15px;
     width: 150px;
 }
