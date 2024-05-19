@@ -7,7 +7,7 @@ export default function BannerSection() {
             <div className={styles.image_banner}>
                 <Image
                     src="/images/general/bear_v2.png"
-                    alt="A majestic bear"
+                    alt="A cute bear sleeping among books in a clear and tranquile night"
                     width={1456} // Adjust for your image's actual size
                     height={816}
                     priority={true}></Image>

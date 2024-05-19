@@ -15,7 +15,8 @@
     align-items: flex-end;
 }
 .phone_img {
-    background-color: pink;
+    object-fit: cover;
+    object-position: 0px 0px;
     border-radius: 35px 35px 0px 0px;
     height: 99%; 
     width: 96%;
@@ -23,7 +24,7 @@
 @media (min-width: 900px) {
     .phone_container {
         align-items: center;
-        width: 280px;
+        width: 250px;
         height: 53vh;
         height: 53dvh;
         max-height: 630px;
@@ -37,6 +38,8 @@
         border-radius: 35px;
     }
     .phone_img {
+        object-position: 50% 100%;
+        object-fit: contain;
         border-radius: 35px;
         height: 98%;
     }
