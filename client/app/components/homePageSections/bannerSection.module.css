@@ -64,7 +64,7 @@
         right: 0%;
     }
     .rounded_mask_first::after {
-        content: 'a';
+        content: '';
         background-color: transparent;
         height: 70px;
         width: 70px;
@@ -77,10 +77,33 @@
     }
 }
 @media (min-width: 1250px) {
+    .image_banner {
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 0px;
+    }
     .imagine_section {
         order: 3;
         flex-basis: 80%;
         height: 50%;
         max-height: unset;
+    }
+    .rounded_mask_first {
+        top: unset;
+        bottom: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 40px;
+    }
+    .rounded_mask_first::before {
+        top: unset;
+        bottom: 100%;
+        box-shadow: 30px 30px var(--main-background-color);
+        right: 0%;
+    }
+    .rounded_mask_first::after {
+        top: unset;
+        bottom: 0px;
+        left: unset;
+        box-shadow: 30px 30px var(--main-background-color);
+        right: 100%;
     }
 }
