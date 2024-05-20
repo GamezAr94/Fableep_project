@@ -53,7 +53,7 @@
     .description_section { 
         flex-basis: 51vh;
         flex-basis: 51dvh;
-        min-height: 335px;
+        min-height: 420px;
         max-height: 900px;
     }
     .description_section main {

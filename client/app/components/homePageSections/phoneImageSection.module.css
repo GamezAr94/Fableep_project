@@ -61,9 +61,10 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        height: 60vh;
-        height: 60dvh;
         max-height: 600px;
+        height: 63vh;
+        height: 63dvh;
+        min-height: 470px;
         left: 0px;
         right: 0px;
         margin: 0 auto;

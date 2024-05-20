@@ -6,12 +6,11 @@ export default function MainDescription() {
         <div className={styles.description_section}>
             <main>
                 <div className={styles.header_container}>
-                    <h1>AI Story Generator</h1>
-                    <h2>Create BEAUTIFUL bedtime stories for your kids.</h2>
+                    <h1>AI Bedtime Stories</h1>
+                    <h2>Bedtime Stories for your kids that INSPIRE.</h2>
                 </div>
                 <h3>
-                    create good habits and spend quality time with your loved
-                    ones.
+                Start your free tiral and spark your child's imagination today!
                 </h3>
                 <LoginButton href="dashboard/signup" isLogin="false">
                     Try For Free
