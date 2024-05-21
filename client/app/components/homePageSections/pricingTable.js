@@ -1,37 +1,68 @@
+"use client";
 import styles from "./pricingTable.module.css";
+import { useState } from "react";
 
 export default function PricingTable() {
+    const [isYearly, setIsYearly] = useState(false);
+
+    const togglePricing = () => {
+        setIsYearly(!isYearly);
+    };
+
+    const monthlyPrices = {
+        basic: 20,
+        intermediate: 30,
+        advanced: 50,
+    };
+
+    const yearlyPrices = {
+        basic: 200, // Example: Discounted annual price
+        intermediate: 300,
+        advanced: 500,
+    };
+
     return (
         <div className={styles.pricing_table}>
-            <div className={styles.tier}>
-                <h3>Free (1 month trial)</h3>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                </ul>
-                <button>Try Free</button>
+            <div className={styles.header}>
+                <h4>The Right plan for your family</h4>
+                <p>Choose the plan that works best for you and your family.</p>
+                <button className={styles.price_type} onClick={togglePricing}>
+                    {isYearly ? "Show Monthly Pricing" : "Show Yearly Pricing"}
+                </button>
             </div>
 
-            <div className={styles.tier}>
-                <h3>Basic</h3>
-                <p>$XX/month</p>
-                <ul>
-                    <li>All Free Features</li>
-                    <li>Feature 3</li>
-                    <li>Feature 4</li>
-                </ul>
-                <button>Get Started</button>
-            </div>
-
-            <div className={styles.tier}>
-                <h3>Advanced</h3>
-                <p>$XX/month</p>
-                <ul>
-                    <li>All Basic Features</li>
-                    <li>Feature 5</li>
-                    <li>Feature 6</li>
-                </ul>
-                <button>Get Started</button>
+            {/* Rest of the pricing table structure */}
+            <div className={styles.prices_container}>
+                <div className={styles.tier}>
+                    <h3>Basic</h3>
+                    <p>
+                        ${isYearly ? yearlyPrices.basic : monthlyPrices.basic}/
+                        {isYearly ? "year" : "month"}
+                    </p>
+                    {/* ... (features list) */}
+                </div>
+                <div className={styles.tier}>
+                    <h3>Intermediate</h3>
+                    <p>
+                        $
+                        {isYearly
+                            ? yearlyPrices.intermediate
+                            : monthlyPrices.intermediate}
+                        /{isYearly ? "year" : "month"}
+                    </p>
+                    {/* ... (features list) */}
+                </div>
+                <div className={styles.tier}>
+                    <h3>Advanced</h3>
+                    <p>
+                        $
+                        {isYearly
+                            ? yearlyPrices.advanced
+                            : monthlyPrices.advanced}
+                        /{isYearly ? "year" : "month"}
+                    </p>
+                    {/* ... (features list) */}
+                </div>
             </div>
         </div>
     );
