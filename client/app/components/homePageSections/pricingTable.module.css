@@ -1,0 +1,24 @@
+.pricing_table {
+  display: flex;
+  flex-direction: column; /* Stack tiers vertically on mobile */
+  gap: 20px;
+}
+
+.tier {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Tablet styles (min-width: 900px) */
+@media (min-width: 900px) {
+  .pricing-table {
+    flex-direction: row; /* Arrange tiers horizontally on tablet/larger */
+    justify-content: space-around; /* Distribute evenly */
+  }
+}
+
+/* Desktop styles (min-width: 1250px) */
+@media (min-width: 1250px) {
+  /* Additional styling for larger screens if needed */
+}

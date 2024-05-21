@@ -10,7 +10,7 @@ export default function MainDescription() {
                     <h2>Bedtime Stories for your kids that INSPIRE.</h2>
                 </div>
                 <h3>
-                Start your free tiral and spark your child's imagination today!
+                Start your free tiral and spark your child&apos;s imagination today!
                 </h3>
                 <LoginButton href="dashboard/signup" isLogin="false">
                     Try For Free
