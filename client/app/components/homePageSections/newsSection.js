@@ -15,8 +15,6 @@ export default function NewsSection() {
         autoplay: true,
         cssEase: "ease-out",
         autoplaySpeed: 4000,
-        nextArrow: <p arrow="true"></p>,
-        prevArrow: <p arrow="true"></p>,
     };
     return (
         <div className={styles.news_container}>

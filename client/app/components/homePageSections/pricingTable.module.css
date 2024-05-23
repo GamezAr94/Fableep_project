@@ -10,9 +10,33 @@
     flex-direction: column;
     text-align: center;
     margin: 0 auto;
+    gap: 20px;
     width: 85%;
     max-width: 800px;
     min-width: 250px;
+    font-size: 1.5rem;
+}
+.header h4 {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+    font-family: 'mainFont';
+    font-family: 'readXlightFont';
+    font-family: 'readLightFont';
+    font-family: 'SecondaryFont';
+    font-family: 'readRegularFont';
+}
+.header p {
+    font-size: 1.4rem;
+}
+.toggle_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+    width: fit-content;
+    margin: 0 auto;
+    margin: 15px auto;
 }
 .prices_container {
     display: flex;
@@ -20,6 +44,7 @@
     flex-direction: column;
     width: 90%;
     min-width: 250px;
+    max-width: 650px;
     margin: 0 auto;
 }
 .tier {
@@ -36,6 +61,7 @@
     }
     .prices_container {
         flex-direction: row;
+        max-width: unset;
     }
     .tier {
         width: 25%;

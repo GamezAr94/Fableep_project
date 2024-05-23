@@ -2,6 +2,7 @@ import "../globals.css";
 import Header from "../../components/header/header";
 import TranslationsProvider from "@/app/components/translationsProvider";
 import initTranslations from "@/app/i18n";
+import "../toggle_switch.css";
 
 export const metadata = {
     title: "Fableep",
