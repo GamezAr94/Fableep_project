@@ -18,6 +18,10 @@ export default function NewsSection() {
     };
     return (
         <div className={styles.news_container}>
+            <div className={styles.subtitle_section}>
+                <h4>The Right plan for your family</h4>
+                <p>Choose the plan that works best for you and your family.</p>
+            </div>
             <Slider className={styles.slider_comp} {...settings}>
                 <div className={styles.slide_container}>
                     <div className={styles.text_part}>

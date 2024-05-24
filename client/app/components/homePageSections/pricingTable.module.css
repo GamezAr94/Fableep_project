@@ -3,7 +3,7 @@
     flex-direction: column; /* Stack tiers vertically on mobile */
     gap: 20px;
     max-width: 1700px;
-    margin: 50px auto 0px auto;
+    margin: 55px auto 0px auto;
 }
 .header {
     display: flex;
@@ -19,10 +19,6 @@
 .header h4 {
     color: var(--primary-color);
     font-size: 2.4rem;
-    font-family: 'mainFont';
-    font-family: 'readXlightFont';
-    font-family: 'readLightFont';
-    font-family: 'SecondaryFont';
     font-family: 'readRegularFont';
 }
 .header p {
