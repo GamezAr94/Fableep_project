@@ -18,22 +18,18 @@
     gap: clamp(10px, 2.5vw, 30px);
 }
 .description_section main h1 {
-    font-size: clamp(1.8rem, 4vw, 2rem);
+    font-size: clamp(1.7rem, 4vw, 2rem);
     letter-spacing: 3px;
-    font-family: 'mainFont';
-    font-family: 'readXLightFont';
-    font-family: 'readLightFont';
-    font-family: 'readRegularFont';
-    font-family: 'pFont';
     font-weight: 100;
     color: var(--light-font-color);
 }
 .description_section main h2 {
-    font-size: clamp(2.6rem, 4vw, 2.8rem);
+    font-size: clamp(3.1rem, 4vw, 3.3rem);
     font-family: 'mainFont';
     line-height: 40px;
     letter-spacing: 4px;
     color: var(--mild-font-color);
+    color: var(--darker-font-color);
 }
 .description_section main h3 {
     font-size: 1.5rem;

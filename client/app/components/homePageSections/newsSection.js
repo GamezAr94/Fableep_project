@@ -4,6 +4,7 @@ import styles from "./newsSection.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import HeadersSections from "./headersSections";
 
 export default function NewsSection() {
     var settings = {
@@ -18,10 +19,10 @@ export default function NewsSection() {
     };
     return (
         <div className={styles.news_container}>
-            <div className={styles.subtitle_section}>
-                <h4>The Right plan for your family</h4>
-                <p>Choose the plan that works best for you and your family.</p>
-            </div>
+            <HeadersSections
+                header={"Ignite Curiosity With Unique Stories"}
+                subheader={"Create a life changing habit"}
+            />
             <Slider className={styles.slider_comp} {...settings}>
                 <div className={styles.slide_container}>
                     <div className={styles.text_part}>
