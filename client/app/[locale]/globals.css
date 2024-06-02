@@ -75,6 +75,10 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'readLightFont';
+    overflow-x: hidden;
+}
+body {
+    min-height: 3000px;
 }
 a {
     text-decoration: none;
@@ -82,10 +86,30 @@ a {
 }
 p, h1, h2, h3, h4, h5, h6 {
     font-size: 1.3rem;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    font-family: 'readRegularFont';
     margin: 0px;
     padding: 0px;
+}
+h4 {
+    color: var(--darker-font-color);
+    font-size: clamp(2.6rem, 5vw, 3rem);
+    letter-spacing: 4px;
+    font-family: 'mainFont';
+    margin-bottom: 15px;
+}
+h6 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-weight: lighter;
 }
 ul, li {
     padding: 0px;
     margin: 0px;
+}
+
+/*from the slider news*/
+.slick-slider.slick-initialized {
+    z-index: 2;
 }
