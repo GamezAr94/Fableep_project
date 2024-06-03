@@ -34,7 +34,8 @@ export default function NewsSection() {
                             alt="A cute bear sleeping among books in a clear and tranquile night"
                             width={1456} // Adjust for your image's actual size
                             height={816}
-                            priority={true}></Image>
+                            quality={80}
+                            loading="lazy"></Image>
                     </div>
                 </div>
                 <div className={styles.slide_container}>
@@ -50,7 +51,8 @@ export default function NewsSection() {
                             alt="A cute bear sleeping among books in a clear and tranquile night"
                             width={1456} // Adjust for your image's actual size
                             height={816}
-                            priority={true}></Image>
+                            quality={80}
+                            loading="lazy"></Image>
                     </div>
                 </div>
             </Slider>

@@ -96,7 +96,6 @@ export default function ParallaxImages() {
                     alt="A cute bear sleeping among books in a clear and tranquile night"
                     width={1456} // Adjust for your image's actual size
                     height={816}
-                    //ref={(el) => (imageRefs.current[index] = el)}
                     style={{
                         transform: `translate(${
                             data.startPosX +
@@ -109,7 +108,8 @@ export default function ParallaxImages() {
                             scrollProgress * (data.rotateEnd - data.rotateStart)
                         }deg)`,
                     }}
-                    priority={true}></Image>
+                    quality={80}
+                    loading="lazy"></Image>
             ))}
         </>
     );

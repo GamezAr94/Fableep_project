@@ -4,6 +4,7 @@ import BannerSection from "@/app/components/homePageSections/bannerSection";
 import PhoneImageSection from "@/app/components/homePageSections/phoneImageSection";
 import NewsSection from "@/app/components/homePageSections/newsSection";
 import MotivateSection from "@/app/components/homePageSections/sections/motivateSection";
+import BooksSection from "@/app/components/homePageSections/sections/booksSection";
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
                 <NewsSection />
             </div>
             <MotivateSection />
+            <BooksSection />
         </>
     );
 }
