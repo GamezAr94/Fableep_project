@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 
 export default function ParallaxImages() {
     const imageRefs = useRef([]);
-    //const imageRef = useRef(null);
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
@@ -40,6 +39,9 @@ export default function ParallaxImages() {
     }, []); // Empty dependency array ensures this runs only once on mount
 
     function getConvertedValue(smScreen, mScreen, lScreen) {
+        if (typeof window === "undefined") {
+            return 0;
+        }
         const windowWidth = window.innerWidth;
         if (windowWidth > 1249) {
             return lScreen;

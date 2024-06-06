@@ -13,7 +13,7 @@
     border-radius: 30px;
 }
 .card {
-    width: 60%;
+    width: 80%;
     min-width: 300px;
     text-align: center;
     align-items: center;
@@ -35,6 +35,7 @@
     justify-content: center;
     width: 39%;
     min-height: 150px;
+    --rotation-duration: 26;
 }
 .td_carousel_container img {
     width: 135px;
@@ -44,16 +45,19 @@
     transition: 1s ease-in-out;
     border-radius: 26px;
     transform-origin: center center;
-    animation: rotating-carousel 8s linear 0s infinite normal forwards;
+    animation: rotating-carousel calc(var(--rotation-duration)*1s) linear 0s infinite normal forwards;
 }
 .td_carousel_container img:nth-of-type(2) {
     animation-delay: -6s;
+    animation-delay: calc(-1 * (var(--rotation-duration) * .75) * 1s);
 }
 .td_carousel_container img:nth-of-type(3) {
     animation-delay: -4s;
+    animation-delay: calc(-1 * (var(--rotation-duration) * .50) * 1s);
 }
 .td_carousel_container img:nth-of-type(4) {
     animation-delay: -2s;
+    animation-delay: calc(-1 * (var(--rotation-duration) * .25) * 1s);
 }
 .td_carousel_container img:nth-of-type(5) {
     animation-delay: 0s;
@@ -75,10 +79,15 @@
     .container {
         flex-direction: row;
         min-height: 400px;
+        margin-top: 150px;
     }
     .card {
         align-items: flex-start;
         text-align: left;
+        width: 50%;
+    }
+    .td_carousel_container {
+        width: 50%;
     }
     .td_carousel_container img {
         width: 150px;
@@ -101,6 +110,7 @@
 @media (min-width: 1250px) {
     .container {
         min-height: 300px;
+        margin-top: 190px;
     }
     .td_carousel_container img {
         width: 165px;
