@@ -6,49 +6,39 @@ import { useState, useEffect, useRef } from "react";
 export default function ParallaxImages() {
     const imageRefs = useRef([]);
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [isClient, setIsClient] = useState(false); // Hydration state
 
     useEffect(() => {
-        const handleScroll = () => {
-            // animation starting point, we will start counting after the 300 of height
-            const scrollTop =
-                (window.scrollY || document.documentElement.scrollTop) < 200
-                    ? 0
-                    : window.scrollY || document.documentElement.scrollTop;
+        setIsClient(true); // Set to true when client-side rendering is ready
 
-            // animation ending point depending on the screen widht
-            // the grather the number the latter it will stop
-            let ending = 0.9;
-            if (window.innerWidth < 1249 && window.innerWidth > 900) {
-                ending = 1.3;
-            } else if (window.innerWidth <= 900) {
-                ending = 1.5;
-            }
-            const scrollHeight = window.innerHeight * ending;
-            // store the value in the hook and dont keep counting just stop at 1 (100%)
-            setScrollProgress(
-                scrollTop / scrollHeight >= 1 ? 1 : scrollTop / scrollHeight
+        function handleScroll() {
+            const viewportHeight = window.innerHeight;
+            const scrollTop = Math.max(
+                0,
+                (window.scrollY || document.documentElement.scrollTop) -
+                    viewportHeight * 0.2
             );
-        };
+            const maxScroll =
+                viewportHeight *
+                (window.innerWidth < 900
+                    ? 1.5
+                    : window.innerWidth < 1249
+                    ? 1.3
+                    : 0.9); // Simplified breakpoint logic
+            setScrollProgress(Math.min(1, scrollTop / maxScroll));
+        }
 
         window.addEventListener("scroll", handleScroll);
-
-        // Cleanup the event listener on unmount
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []); // Empty dependency array ensures this runs only once on mount
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     function getConvertedValue(smScreen, mScreen, lScreen) {
-        if (typeof window === "undefined") {
-            return 0;
-        }
-        const windowWidth = window.innerWidth;
-        if (windowWidth > 1249) {
-            return lScreen;
-        } else if (windowWidth > 900 && windowWidth < 1250) {
-            return mScreen;
-        }
-        return smScreen;
+        const windowWidth = isClient ? window.innerWidth : 0; // Handle server-side rendering
+        return windowWidth > 1249
+            ? lScreen
+            : windowWidth > 900
+            ? mScreen
+            : smScreen;
     }
 
     const imageData = [
@@ -84,7 +74,6 @@ export default function ParallaxImages() {
             rotateStart: 0,
             rotateEnd: 310,
         },
-        // Add more image data as needed
     ];
 
     return (
@@ -95,23 +84,31 @@ export default function ParallaxImages() {
                     key={index}
                     ref={(el) => (imageRefs.current[index] = el)}
                     src="/images/general/bear_v2.png"
-                    alt="A cute bear sleeping among books in a clear and tranquile night"
-                    width={1456} // Adjust for your image's actual size
+                    alt="A cute bear sleeping among books in a clear and tranquil night"
+                    width={1456}
                     height={816}
-                    style={{
-                        transform: `translate(${
-                            data.startPosX +
-                            scrollProgress * (data.endPosX - data.startPosX)
-                        }px, ${
-                            data.startPosY +
-                            scrollProgress * (data.endPosY - data.startPosY)
-                        }px) rotate(${
-                            data.rotateStart +
-                            scrollProgress * (data.rotateEnd - data.rotateStart)
-                        }deg)`,
-                    }}
+                    style={
+                        isClient // Conditionally apply styles only on the client side
+                            ? {
+                                  transform: `translate(${
+                                      data.startPosX +
+                                      scrollProgress *
+                                          (data.endPosX - data.startPosX)
+                                  }px, ${
+                                      data.startPosY +
+                                      scrollProgress *
+                                          (data.endPosY - data.startPosY)
+                                  }px) rotate(${
+                                      data.rotateStart +
+                                      scrollProgress *
+                                          (data.rotateEnd - data.rotateStart)
+                                  }deg)`,
+                              }
+                            : {} // Empty styles for server-side rendering
+                    }
                     quality={80}
-                    loading="lazy"></Image>
+                    loading="lazy"
+                />
             ))}
         </>
     );
