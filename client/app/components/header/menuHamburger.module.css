@@ -56,8 +56,9 @@
 /* Menu Open Container */
 .menuContainer {
     right: 0;
-    position: relative;
+    position: absolute;
     width: 100vw;
+    top: 100%;
     max-height: 95vh;
     max-height: 95dvh;
     display: flex;

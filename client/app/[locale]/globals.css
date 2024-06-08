@@ -62,7 +62,7 @@ html {
     --transition-duration: .3s;
     --transition-timing: ease-in-out;
 
-    max-width: 100wv;
+    max-width: 100vw;
     overflow-x: hidden;
 }
 
@@ -75,10 +75,6 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'readLightFont';
-    overflow-x: hidden;
-}
-body {
-    min-height: 3000px;
 }
 a {
     text-decoration: none;

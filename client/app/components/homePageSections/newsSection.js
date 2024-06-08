@@ -18,7 +18,7 @@ export default function NewsSection() {
     };
     return (
         <div className={styles.news_container}>
-            <h6>Ignite Curiosity With Unique Stories</h6>
+            <h6>Ignite Curiosity</h6>
             <h4>Create a life changing habit</h4>
             <Slider className={styles.slider_comp} {...settings}>
                 <div className={styles.slide_container}>

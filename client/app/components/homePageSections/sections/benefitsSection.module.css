@@ -1,0 +1,54 @@
+.container {
+    margin: 50px auto 0px auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    max-width: 1500px;
+}
+.card {
+    width: 80%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 40px 0px 25px 0px;
+    text-align: center;
+}
+.card h4 {
+    margin: 0px;
+}
+.benefits_container {
+    display: flex;
+    width: 90%;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.benefits_container > div {
+    flex-basis: 250px;
+    min-width: 100px;
+    min-height: 200px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 7px 0px rgb(221, 221, 221);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    gap: 15px;
+}
+.icon {
+    width: 80%;
+    background-color: red;
+    flex-basis: 65%;
+}
+.desc {
+    width: 80%;
+    background-color: red;
+    text-align: center;
+}
